@@ -19,6 +19,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static jdk.nashorn.tools.ShellFunctions.input;
 import logica.ClienteLogica;
 import logica.NacionalidadLogica;
 import logica.SexoLogica;
@@ -56,7 +57,10 @@ public void llenarCbS() throws SQLException{
     miComboSexo = dao.getComboSexo();//La consulta tiene que retornar un ArrayList
  
     for(int i=0; i<miComboSexo.size();i++){
+    
+        
       jCboSexo.addItem(miComboSexo.get(i).getSexo());
+      
     } 
 } 
 public void llenarCbN() throws SQLException{
@@ -68,7 +72,11 @@ public void llenarCbN() throws SQLException{
     miComboNacionalidad = dao.getComboNacionalidad();//La consulta tiene que retornar un ArrayList
  
     for(int i=0; i<miComboNacionalidad.size();i++){
+       
       jCboNacionalidad.addItem(miComboNacionalidad.get(i).getNacionalidadcol());
+   
+
+   
     } 
 }
 
