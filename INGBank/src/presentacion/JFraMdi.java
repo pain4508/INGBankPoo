@@ -17,6 +17,7 @@ public class JFraMdi extends javax.swing.JFrame {
     public JFraMdi() {
         initComponents();
         setLocationRelativeTo(null);
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -118,11 +119,11 @@ public class JFraMdi extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDesktopPane1)
         );
 
         jDesktopPane1.getAccessibleContext().setAccessibleName("");
