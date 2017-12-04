@@ -5,6 +5,21 @@
  */
 package presentacion;
 
+import dao.ClienteDao;
+import dao.CuentaDao;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import logica.ClienteLogica;
+import logica.CuentaLogica;
+
 /**
  *
  * @author junio
@@ -17,6 +32,43 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
     public JIFraDepositos() {
         initComponents();
     }
+    
+    private void Depositar(){
+        
+        CuentaLogica cu = new CuentaLogica();
+        
+        cu.setIdCuenta(Integer.parseInt(jTFCuenta.getText()));
+        cu.setSaldo(Double.parseDouble(this.jTFMonto.getText()));        
+        try {
+            CuentaDao da = new CuentaDao();
+            da.modificarCuenta(cu);
+            JOptionPane.showMessageDialog(null, "Registro almacenado satisfactoriamente.");
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al almacenar el Cliente." + e);
+        }
+    }
+    
+    private void llenarTabla() throws SQLException{
+        
+        CuentaDao dao = new CuentaDao();
+        List<CuentaLogica> miLista = dao.getLista();
+        
+        DefaultTableModel temp = (DefaultTableModel) this.jTblCuenta.getModel(); 
+        
+        for(CuentaLogica c1:miLista){
+            //Se crea un array que sera una de las filas de la tabla.
+            Object[] fila = new Object[3]; // Hay 2 columnas en la tabla
+            // Se rellena cada posicion del array con una de las columnas de la tabla en base de datos.
+            
+                fila[0] = c1.getIdCuenta();
+                fila[1] = c1.getSaldo();
+                temp.addRow(fila);
+        }   
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +87,7 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
         jTFMonto = new javax.swing.JTextField();
         jBtnDepositar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTblCuenta = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
@@ -68,8 +120,13 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
         jLabel3.setText("Monto a Depositar");
 
         jBtnDepositar.setText("Depositar");
+        jBtnDepositar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnDepositarActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTblCuenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -88,7 +145,7 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTblCuenta);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,6 +192,16 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBtnDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDepositarActionPerformed
+        // TODO add your handling code here:
+            try {
+                Depositar();
+                llenarTabla();
+            } catch (SQLException ex) {
+                Logger.getLogger(JFraCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_jBtnDepositarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnDepositar;
@@ -145,6 +212,6 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFCuenta;
     private javax.swing.JTextField jTFMonto;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTblCuenta;
     // End of variables declaration//GEN-END:variables
 }
