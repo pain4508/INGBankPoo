@@ -31,6 +31,7 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
      */
     public JIFraDepositos() {
         initComponents();
+        
     }
     
     private void Depositar(){
