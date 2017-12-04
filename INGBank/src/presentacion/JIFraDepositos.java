@@ -37,6 +37,9 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        setClosable(true);
+        setIconifiable(true);
+
         jPanel1.setBackground(new java.awt.Color(68, 108, 179));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
