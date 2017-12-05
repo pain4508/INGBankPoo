@@ -22,7 +22,7 @@ public class conexion {
     public static Connection conectarI() throws SQLException{
     try {
         Class.forName("com.mysql.jdbc.Driver");
-        return DriverManager.getConnection("jdbc:mysql://localhost/INGBank","root","9654654602");
+        return DriverManager.getConnection("jdbc:mysql://localhost/ingbank","root","1234");
       
     } catch (ClassNotFoundException e) {
         throw new SQLException(e.getMessage());
