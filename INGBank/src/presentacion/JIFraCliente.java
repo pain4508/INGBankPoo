@@ -26,7 +26,7 @@ public class JIFraCliente
     /**
      * Creates new form JIFraCliente
      */
-    public JIFraCliente()  {
+    public JIFraCliente() {
         initComponents();
        
           llenarCbS();
@@ -422,46 +422,57 @@ public class JIFraCliente
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void llenarCbS() throws SQLException {
+    private void llenarCbS() {
 
-    ClienteDao dao = new ClienteDao();   
-    jCboSexo.removeAllItems(); 
-     
-    List<SexoLogica> miComboSexo;
-   
-    miComboSexo = dao.getComboSexo();
- 
-    for(int i=0; i<miComboSexo.size();i++){
+    try{
+        ClienteDao dao = new ClienteDao();   
+        jCboSexo.removeAllItems(); 
+
+        List<SexoLogica> miComboSexo;
+
+        miComboSexo = dao.getComboSexo();
+
+        for(int i=0; i<miComboSexo.size();i++){
+
+
+            jCboSexo.addItem(miComboSexo.get(i).getSexo());
+
+            if(jCboSexo.getSelectedItem()=="Masculino"){
+                i=1;
+            }else if(jCboSexo.getSelectedItem()=="Femenino"){
+                i=2;
+            } 
+        }
+    }catch(SQLException e){
+        JOptionPane.showMessageDialog(null, e);
+    }  
     
-        
-      jCboSexo.addItem(miComboSexo.get(i).getSexo());
-        
-    if(jCboSexo.getSelectedItem()=="Masculino"){
-      i=1;
-    }else if(jCboSexo.getSelectedItem()=="Femenino"){
-      i=2;
-    } 
-    }
   
 } 
-public void llenarCbN() throws SQLException{
+private void llenarCbN(){
    
-    ClienteDao dao = new ClienteDao();   
-    jCboNacionalidad.removeAllItems();
-     
-    List<NacionalidadLogica> miComboNacionalidad;
-   
-    miComboNacionalidad = dao.getComboNacionalidad();
- 
-    for(int i=0; i<miComboNacionalidad.size();i++){
-       
-      jCboNacionalidad.addItem(miComboNacionalidad.get(i).getNacionalidadcol());
-    if(jCboNacionalidad.getSelectedItem()=="Honduras"){
-        i=1;
-    }else if(jCboNacionalidad.getSelectedItem()=="Guatemala"){
-      i=2;
-    } 
-    } 
+    try{
+        ClienteDao dao = new ClienteDao();   
+        jCboNacionalidad.removeAllItems();
+
+        List<NacionalidadLogica> miComboNacionalidad;
+
+        miComboNacionalidad = dao.getComboNacionalidad();
+
+        for(int i=0; i<miComboNacionalidad.size();i++){
+
+            jCboNacionalidad.addItem(miComboNacionalidad.get(i).getNacionalidadcol());
+            if(jCboNacionalidad.getSelectedItem()=="Honduras"){
+                i=1;
+            }else if(jCboNacionalidad.getSelectedItem()=="Guatemala"){
+                i=2;
+            } 
+        } 
+        
+    }catch(SQLException e){
+        JOptionPane.showMessageDialog(null, e);
+    }
+    
 }
 
       private void habilitarBotones(boolean nuevo, boolean guardar, boolean modificar, boolean eliminar, boolean textField){
