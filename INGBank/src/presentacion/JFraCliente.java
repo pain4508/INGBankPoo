@@ -43,40 +43,49 @@ public class JFraCliente
           llenarCbS();
           llenarCbN();
           habilitarBotones(true,false,false,false,false);
-          JOptionPane.showMessageDialog(null,"Bienvenido");
-          JOptionPane.showMessageDialog(null,"Proyecto INGBank");
+       
     }
  
  
 public void llenarCbS() throws SQLException{
- ClienteDao dao = new ClienteDao();   
-    jCboSexo.removeAllItems(); //Vaciamos el JComboBox
+
+    ClienteDao dao = new ClienteDao();   
+    jCboSexo.removeAllItems(); 
      
     List<SexoLogica> miComboSexo;
    
-    miComboSexo = dao.getComboSexo();//La consulta tiene que retornar un ArrayList
+    miComboSexo = dao.getComboSexo();
  
     for(int i=0; i<miComboSexo.size();i++){
     
         
       jCboSexo.addItem(miComboSexo.get(i).getSexo());
-      
+        
+    if(jCboSexo.getSelectedItem()=="Masculino"){
+      i=1;
+    }else if(jCboSexo.getSelectedItem()=="Femenino"){
+      i=2;
     } 
+    }
+  
 } 
 public void llenarCbN() throws SQLException{
- ClienteDao dao = new ClienteDao();   
-    jCboNacionalidad.removeAllItems(); //Vaciamos el JComboBox
+
+    ClienteDao dao = new ClienteDao();   
+    jCboNacionalidad.removeAllItems();
      
     List<NacionalidadLogica> miComboNacionalidad;
    
-    miComboNacionalidad = dao.getComboNacionalidad();//La consulta tiene que retornar un ArrayList
+    miComboNacionalidad = dao.getComboNacionalidad();
  
     for(int i=0; i<miComboNacionalidad.size();i++){
        
       jCboNacionalidad.addItem(miComboNacionalidad.get(i).getNacionalidadcol());
-   
-
-   
+    if(jCboNacionalidad.getSelectedItem()=="Honduras"){
+        i=1;
+    }else if(jCboNacionalidad.getSelectedItem()=="Guatemala"){
+      i=2;
+    } 
     } 
 }
 
