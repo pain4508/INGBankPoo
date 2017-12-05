@@ -5,6 +5,10 @@
  */
 package presentacion;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author junio
@@ -80,6 +84,11 @@ public class JFraMdi extends javax.swing.JFrame {
         jMenu4.setText("Clientes");
 
         jMenuItem1.setText("Registrar Cliente");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem1);
 
         jMenuBar2.add(jMenu4);
@@ -142,6 +151,12 @@ public class JFraMdi extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       JIFraCliente cl = new JIFraCliente();
+        this.jDesktopPane1.add(cl);
+        cl.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

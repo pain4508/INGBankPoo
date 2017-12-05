@@ -199,7 +199,7 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
                 Depositar();
                 llenarTabla();
             } catch (SQLException ex) {
-                Logger.getLogger(JFraCliente.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jBtnDepositarActionPerformed
 
