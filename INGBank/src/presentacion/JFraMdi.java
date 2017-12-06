@@ -141,7 +141,7 @@ public class JFraMdi extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+       
         JIFraDepositos de = new JIFraDepositos();
         this.jDesktopPane1.add(de);
         de.setVisible(true);
