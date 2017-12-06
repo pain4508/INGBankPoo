@@ -34,7 +34,7 @@ public class CuentaDao {
        
        try (PreparedStatement st =(PreparedStatement) cnc.prepareStatement(sql)){
             st.setDouble(1, c1.getSaldo());
-            st.setInt(12, c1.getIdCuenta());
+            st.setInt(2, c1.getIdCuenta());
             st.execute();
        } 
    }
@@ -58,7 +58,7 @@ public class CuentaDao {
               
           }
       }      
-  return miLista;
+    return miLista;
   }
     
 }
