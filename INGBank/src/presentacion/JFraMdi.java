@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -111,6 +112,11 @@ public class JFraMdi extends javax.swing.JFrame {
         jMenu6.add(jMenuItem4);
 
         jMenuItem5.setText("Retiros");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem5);
 
         jMenuBar2.add(jMenu6);
@@ -144,6 +150,9 @@ public class JFraMdi extends javax.swing.JFrame {
         // TODO add your handling code here:
         JIFraDepositos de = new JIFraDepositos();
         this.jDesktopPane1.add(de);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = de.getSize();
+        de.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
         de.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -155,8 +164,21 @@ public class JFraMdi extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
        JIFraCliente cl = new JIFraCliente();
         this.jDesktopPane1.add(cl);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = cl.getSize();
+        cl.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
         cl.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        JIFraRetiro re = new JIFraRetiro();
+        this.jDesktopPane1.add(re);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = re.getSize();
+        re.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        re.show();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
