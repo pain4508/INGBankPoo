@@ -421,7 +421,6 @@ public class JIFraCliente
     }// </editor-fold>//GEN-END:initComponents
 
     private void llenarCbS() {
-
     try{
         ClienteDao dao = new ClienteDao();   
         jCboSexo2.removeAllItems(); 
@@ -434,13 +433,9 @@ public class JIFraCliente
 
 
             jCboSexo2.addItem(miComboSexo.get(i).getSexo());
-
-            if(jCboSexo2.getSelectedItem()=="Masculino"){
-                i=1;
-            }else if(jCboSexo2.getSelectedItem()=="Femenino"){
-                i=2;
-            } 
-        }
+            
+         }
+            
     }catch(SQLException e){
         JOptionPane.showMessageDialog(null, e);
     }  
@@ -448,8 +443,7 @@ public class JIFraCliente
   
 } 
 private void llenarCbN(){
-   
-    try{
+       try{
         ClienteDao dao = new ClienteDao();   
         jCboNacionalidad2.removeAllItems();
 
@@ -460,12 +454,8 @@ private void llenarCbN(){
         for(int i=0; i<miComboNacionalidad.size();i++){
 
             jCboNacionalidad2.addItem(miComboNacionalidad.get(i).getNacionalidadcol());
-            if(jCboNacionalidad2.getSelectedItem()=="Honduras"){
-                i=1;
-            }else if(jCboNacionalidad2.getSelectedItem()=="Guatemala"){
-                i=2;
-            } 
-        } 
+        }
+        
         
     }catch(SQLException e){
         JOptionPane.showMessageDialog(null, e);
@@ -520,14 +510,50 @@ private void llenarCbN(){
     private void guardarCliente(){
         
         ClienteLogica c1 = new ClienteLogica();
+            if(jCboSexo2.getSelectedItem()=="Masculino"){
+            
+                   c1.setIdSexo(Integer.parseInt(this.jCboSexo2.toString()));
+                    
+         }else if(jCboSexo2.getSelectedItem()=="Femenino"){
+            
+               c1.setIdSexo(Integer.parseInt(this.jCboSexo2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Honduras"){
+            
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Guatemala"){
+            
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Nicaragua"){
+            
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Costarica"){
+            
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Estados Unidos"){
+            
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Mexico"){
+            
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Panama"){
+            
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Canada"){
+            
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Otros"){
+            
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }
+         
         
         c1.setIdCliente(Integer.parseInt(this.jTFIdCliente2.getText()));
         c1.setNombres(this.jTFNombres2.getText());
         c1.setApellidos(this.jTFApellidos2.getText());
         c1.setDireccion(this.jTFDireccion2.getText());
-        c1.setIdSexo(Integer.parseInt(this.jCboSexo2.toString()));
+       
         c1.setTelefono(this.jTFTelefono2.getText());
-        c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+       
              
         try {
             ClienteDao dao = new ClienteDao();
