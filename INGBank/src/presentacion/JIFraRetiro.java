@@ -7,6 +7,10 @@ package presentacion;
 
 import dao.ClienteDao;
 import dao.CuentaDao;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import logica.CuentaLogica;
 
 /**
@@ -29,8 +33,28 @@ public class JIFraRetiro extends javax.swing.JInternalFrame {
         try {
             CuentaDao da = new CuentaDao();
             da.modificarCuenta(cu);
+            JOptionPane.showMessageDialog(null, "Registro almacenado satisfactoriamente.");
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al almacenar el registro");
         }
+    }
+    
+     private void llenarTabla() throws SQLException{
+        
+        CuentaDao dao = new CuentaDao();
+        List<CuentaLogica> miLista = dao.getLista();
+        
+        DefaultTableModel temp = (DefaultTableModel) this.jTblCuenta.getModel(); 
+        
+        for(CuentaLogica c1:miLista){
+            //Se crea un array que sera una de las filas de la tabla.
+            Object[] fila = new Object[3]; // Hay 2 columnas en la tabla
+            // Se rellena cada posicion del array con una de las columnas de la tabla en base de datos.
+            
+                fila[0] = c1.getIdCuenta();
+                fila[1] = c1.getSaldo();
+                temp.addRow(fila);
+        }   
     }
 
     /**
