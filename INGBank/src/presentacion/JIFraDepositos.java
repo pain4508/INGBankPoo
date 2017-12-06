@@ -46,7 +46,7 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Registro almacenado satisfactoriamente.");
             
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al almacenar el Cliente." + e);
+            JOptionPane.showMessageDialog(null, "Error al almacenar el Deposito." + e);
         }
     }
     

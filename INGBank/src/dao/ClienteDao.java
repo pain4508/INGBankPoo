@@ -31,42 +31,51 @@ public class ClienteDao {
         this.cnc = conexion.conectarI();
         
     }
-       //Insertar ciudad
+       //Insertar cliente
 public void insertarcliente(ClienteLogica c1) throws SQLException{
        //Preparar la consulta 
-       String sql= "Insert into Cliente(Nombres,Apellidos,Direccion,Telefono) "
-                +"Values(?,?,?,?) ";
+       String sql= "Insert into Cliente(IdCliente,Nombres,Apellidos,Direccion,IdSexo,Telefono,IdNacionalidad) "
+                +"Values(?,?,?,?,?,?,?) ";
        try (PreparedStatement st =(PreparedStatement) cnc.prepareStatement(sql)){
-            st.setString(1, c1.getNombres());
-            st.setString(2, c1.getApellidos());
-            st.setString(3, c1.getDireccion());
-            st.setString(4, c1.getTelefono());
+           
+            st.setInt(1, c1.getIdCliente());
+            st.setString(2, c1.getNombres());
+            st.setString(3, c1.getApellidos());
+            st.setString(4, c1.getDireccion());
+            st.setInt(5, c1.getIdSexo());
+            st.setString(6, c1.getTelefono());
+            st.setInt(7, c1.getIdNacionalidad());
             st.execute();
        } 
    }
    
-public void modificarciudad(ClienteLogica c1) throws SQLException{
+public void modificarcliente(ClienteLogica c1) throws SQLException{
        //Preparar la consulta 
        String sql="Update  Cliente "
+               +"Set IdCliente = ? "
                 +"Set Nombres = ? "
                 +"Set Apellidos = ? "
                 +"Set Direccion = ? "
+               +"Set IdSexo = ? "
                 +"Set Telefono = ? "
+               +"Set IdNacionalidad = ? "
                 +"Where IdCliente = ? ";
        
        try (PreparedStatement st =(PreparedStatement) cnc.prepareStatement(sql)){
-            st.setString(1, c1.getNombres());
-             st.setString(1, c1.getApellidos());
-              st.setString(1, c1.getDireccion());
-               st.setString(1, c1.getTelefono());
-            st.setInt(2, c1.getIdCliente());
+             st.setInt(1, c1.getIdCliente()); 
+           st.setString(2, c1.getNombres());
+             st.setString(3, c1.getApellidos());
+              st.setString(4, c1.getDireccion());
+               st.setInt(5, c1.getIdSexo());
+               st.setString(6, c1.getTelefono());
+                st.setInt(7, c1.getIdNacionalidad());
             st.execute();
        } 
    }
- public void eliminarciudad(ClienteLogica c1) throws SQLException{
+ public void eliminarcliente(ClienteLogica c1) throws SQLException{
        //Preparar la consulta 
        String sql="Delete "
-                +"From Cliete = ? "
+                +"From Cliente = ? "
                 +"Where IdCliente = ? ";
        
        try (PreparedStatement st = cnc.prepareStatement(sql)){
