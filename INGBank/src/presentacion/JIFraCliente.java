@@ -358,8 +358,7 @@ public class JIFraCliente
                                         .addGap(45, 45, 45)
                                         .addComponent(jBtnModificar2)
                                         .addGap(39, 39, 39)
-                                        .addComponent(jBtnEliminar2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                        .addComponent(jBtnEliminar2))))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane3)))
@@ -392,10 +391,10 @@ public class JIFraCliente
                     .addComponent(jCboNacionalidad2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jBtnGuardar2)
-                        .addComponent(jBtnModificar2)
-                        .addComponent(jBtnEliminar2))
+                        .addComponent(jBtnModificar2, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jBtnEliminar2, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addComponent(jBtnN))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -484,8 +483,7 @@ private void llenarCbN(){
        jTFApellidos2.setText("");
        jTFDireccion2.setText("");
        jTFTelefono2.setText("");
-       jCboSexo2.removeAllItems();
-       jCboNacionalidad2.removeAllItems();
+      
        
     }
   
@@ -679,7 +677,8 @@ private void llenarCbN(){
     }//GEN-LAST:event_jTblCliente2MousePressed
 
     private void jBtnNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNActionPerformed
-          habilitarBotones(false, true, false, false, true);
+          limpiar();
+        habilitarBotones(false, true, false, false, true);
         jTFNombres2.requestFocus();
         try {
             investigarCorrelativo();
