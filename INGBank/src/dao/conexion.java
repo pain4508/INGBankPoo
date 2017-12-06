@@ -20,16 +20,11 @@ public class conexion {
     static Statement Sentencia;
     static ResultSet Resultado; 
     public static Connection conectarI() throws SQLException{
-    try {
-        Class.forName("com.mysql.jdbc.Driver");
-<<<<<<< HEAD
-        return DriverManager.getConnection("jdbc:mysql://localhost/ingbank","root","9654654602");
-=======
-        return DriverManager.getConnection("jdbc:mysql://localhost/ingbank","root","Ez58K12FizZ21");
->>>>>>> ea9f06b7a6a1dfc4397db94f37839493db471b37
-      
-    } catch (ClassNotFoundException e) {
-        throw new SQLException(e.getMessage());
-    }
+    try{
+            Class.forName("com.mysql.jdbc.Driver");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/INGBank?zeroDateTimeBehavior=convertToNull","root","9654654602");
+        }catch(ClassNotFoundException e){
+            throw new SQLException(e.getMessage());
+        }
 } 
 }
