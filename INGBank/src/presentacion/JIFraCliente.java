@@ -91,7 +91,6 @@ public class JIFraCliente
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jBtnNuevo2 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jBtnGuardar2 = new javax.swing.JButton();
         Direccion2 = new javax.swing.JLabel();
@@ -106,6 +105,7 @@ public class JIFraCliente
         jCboSexo2 = new javax.swing.JComboBox<>();
         jTFApellidos2 = new javax.swing.JTextField();
         jCboNacionalidad2 = new javax.swing.JComboBox<>();
+        jBtnN = new javax.swing.JButton();
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -225,7 +225,6 @@ public class JIFraCliente
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -237,7 +236,7 @@ public class JIFraCliente
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(105, 105, 105)
+                .addGap(121, 121, 121)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -260,13 +259,6 @@ public class JIFraCliente
 
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Nombres");
-
-        jBtnNuevo2.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/new.png")); // NOI18N
-        jBtnNuevo2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnNuevo2ActionPerformed(evt);
-            }
-        });
 
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Apellidos");
@@ -309,6 +301,13 @@ public class JIFraCliente
         });
         jScrollPane3.setViewportView(jTblCliente2);
 
+        jBtnN.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/new.png")); // NOI18N
+        jBtnN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -331,13 +330,12 @@ public class JIFraCliente
                             .addComponent(jTFIdCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTFNombres2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                    .addComponent(jTFNombres2, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jCboSexo2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTFDireccion2, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(29, 29, 29)
-                                        .addComponent(jBtnNuevo2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jBtnN)
+                                        .addGap(18, 18, 18)
                                         .addComponent(jBtnGuardar2)))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
@@ -393,11 +391,12 @@ public class JIFraCliente
                     .addComponent(jCboSexo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCboNacionalidad2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtnNuevo2)
-                    .addComponent(jBtnGuardar2)
-                    .addComponent(jBtnModificar2)
-                    .addComponent(jBtnEliminar2))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBtnGuardar2)
+                        .addComponent(jBtnModificar2)
+                        .addComponent(jBtnEliminar2))
+                    .addComponent(jBtnN))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(147, 147, 147))
@@ -425,7 +424,7 @@ public class JIFraCliente
 
     try{
         ClienteDao dao = new ClienteDao();   
-        jCboSexo.removeAllItems(); 
+        jCboSexo2.removeAllItems(); 
 
         List<SexoLogica> miComboSexo;
 
@@ -434,11 +433,11 @@ public class JIFraCliente
         for(int i=0; i<miComboSexo.size();i++){
 
 
-            jCboSexo.addItem(miComboSexo.get(i).getSexo());
+            jCboSexo2.addItem(miComboSexo.get(i).getSexo());
 
-            if(jCboSexo.getSelectedItem()=="Masculino"){
+            if(jCboSexo2.getSelectedItem()=="Masculino"){
                 i=1;
-            }else if(jCboSexo.getSelectedItem()=="Femenino"){
+            }else if(jCboSexo2.getSelectedItem()=="Femenino"){
                 i=2;
             } 
         }
@@ -452,7 +451,7 @@ private void llenarCbN(){
    
     try{
         ClienteDao dao = new ClienteDao();   
-        jCboNacionalidad.removeAllItems();
+        jCboNacionalidad2.removeAllItems();
 
         List<NacionalidadLogica> miComboNacionalidad;
 
@@ -460,10 +459,10 @@ private void llenarCbN(){
 
         for(int i=0; i<miComboNacionalidad.size();i++){
 
-            jCboNacionalidad.addItem(miComboNacionalidad.get(i).getNacionalidadcol());
-            if(jCboNacionalidad.getSelectedItem()=="Honduras"){
+            jCboNacionalidad2.addItem(miComboNacionalidad.get(i).getNacionalidadcol());
+            if(jCboNacionalidad2.getSelectedItem()=="Honduras"){
                 i=1;
-            }else if(jCboNacionalidad.getSelectedItem()=="Guatemala"){
+            }else if(jCboNacionalidad2.getSelectedItem()=="Guatemala"){
                 i=2;
             } 
         } 
@@ -475,28 +474,28 @@ private void llenarCbN(){
 }
 
       private void habilitarBotones(boolean nuevo, boolean guardar, boolean modificar, boolean eliminar, boolean textField){
-        jBtnNuevo.setEnabled(nuevo);
-        jBtnGuardar.setEnabled(guardar);
-        jBtnModificar.setEnabled(modificar);
-        jBtnEliminar.setEnabled(eliminar);
-        jTFNombres.setEditable(textField);
-        jTFApellidos.setEditable(textField);
-        jCboSexo.setEditable(textField);
-        jTFDireccion.setEditable(textField);
-        jTFTelefono.setEditable(textField);
-        jCboNacionalidad.setEditable(textField);
+        jBtnN.setEnabled(nuevo);
+        jBtnGuardar2.setEnabled(guardar);
+        jBtnModificar2.setEnabled(modificar);
+        jBtnEliminar2.setEnabled(eliminar);
+        jTFNombres2.setEditable(textField);
+        jTFApellidos2.setEditable(textField);
+        jCboSexo2.setEditable(textField);
+        jTFDireccion2.setEditable(textField);
+        jTFTelefono2.setEditable(textField);
+        jCboNacionalidad2.setEditable(textField);
     }
       
      
       
   private void limpiar(){
-       jTFIdCliente.setText("");
-       jTFNombres.setText("");
-       jTFApellidos.setText("");
-       jTFDireccion.setText("");
-       jTFTelefono.setText("");
-       jCboSexo.removeAllItems();
-       jCboNacionalidad.removeAllItems();
+       jTFIdCliente2.setText("");
+       jTFNombres2.setText("");
+       jTFApellidos2.setText("");
+       jTFDireccion2.setText("");
+       jTFTelefono2.setText("");
+       jCboSexo2.removeAllItems();
+       jCboNacionalidad2.removeAllItems();
        
     }
   
@@ -504,13 +503,13 @@ private void llenarCbN(){
         ClienteDao dao = new ClienteDao();
         ClienteLogica c1 = new ClienteLogica();
         c1.setIdCliente(dao.autoIncrementar());
-        jTFIdCliente.setText(String.valueOf(c1.getIdCliente()));
+        jTFIdCliente2.setText(String.valueOf(c1.getIdCliente()));
         
     }
      private boolean verificarTextField(){
         boolean estado;
         
-        if(jTFNombres.getText().isEmpty()  || jTFDireccion.getText().isEmpty() || jTFTelefono.getText().isEmpty()){
+        if(jTFNombres2.getText().isEmpty()  || jTFDireccion2.getText().isEmpty() || jTFTelefono2.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Ingrese los campos vacios");
             estado = false;    
         }else{
@@ -522,13 +521,13 @@ private void llenarCbN(){
         
         ClienteLogica c1 = new ClienteLogica();
         
-        c1.setIdCliente(Integer.parseInt(this.jTFIdCliente.getText()));
-        c1.setNombres(this.jTFNombres.getText());
-        c1.setApellidos(this.jTFApellidos.getText());
-        c1.setDireccion(this.jTFDireccion.getText());
-        c1.setIdSexo(Integer.parseInt(this.jCboSexo.toString()));
-        c1.setTelefono(this.jTFTelefono.getText());
-        c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad.toString()));
+        c1.setIdCliente(Integer.parseInt(this.jTFIdCliente2.getText()));
+        c1.setNombres(this.jTFNombres2.getText());
+        c1.setApellidos(this.jTFApellidos2.getText());
+        c1.setDireccion(this.jTFDireccion2.getText());
+        c1.setIdSexo(Integer.parseInt(this.jCboSexo2.toString()));
+        c1.setTelefono(this.jTFTelefono2.getText());
+        c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
              
         try {
             ClienteDao dao = new ClienteDao();
@@ -556,7 +555,7 @@ private void llenarCbN(){
         ClienteDao dao = new ClienteDao();
         List<ClienteLogica> miLista = dao.getLista();
         
-        DefaultTableModel temp = (DefaultTableModel) this.jTblCliente.getModel(); 
+        DefaultTableModel temp = (DefaultTableModel) this.jTblCliente2.getModel(); 
         
         for(ClienteLogica c1:miLista){
             //Se crea un array que sera una de las filas de la tabla.
@@ -577,14 +576,14 @@ private void llenarCbN(){
     
         
     private void lineaSeleccionada() {
-        if (this.jTblCliente.getSelectedRow() != -1) {
+        if (this.jTblCliente2.getSelectedRow() != -1) {
             //Habilito los controles para que se pueda hacer una accion.
-            if (this.jTblCliente.isEnabled() == true) {
-                this.jTFIdCliente.setText(String.valueOf(this.jTblCliente.getValueAt(jTblCliente.getSelectedRow(), 0)));
-                this.jTFNombres.setText(String.valueOf(this.jTblCliente.getValueAt(jTblCliente.getSelectedRow(), 1)));
-                this.jTFApellidos.setText(String.valueOf(this.jTblCliente.getValueAt(jTblCliente.getSelectedRow(), 2)));
-                this.jTFDireccion.setText(String.valueOf(this.jTblCliente.getValueAt(jTblCliente.getSelectedRow(), 3)));
-                this.jTFTelefono.setText(String.valueOf(this.jTblCliente.getValueAt(jTblCliente.getSelectedRow(), 6)));
+            if (this.jTblCliente2.isEnabled() == true) {
+                this.jTFIdCliente2.setText(String.valueOf(this.jTblCliente2.getValueAt(jTblCliente2.getSelectedRow(), 0)));
+                this.jTFNombres2.setText(String.valueOf(this.jTblCliente2.getValueAt(jTblCliente2.getSelectedRow(), 1)));
+                this.jTFApellidos2.setText(String.valueOf(this.jTblCliente2.getValueAt(jTblCliente2.getSelectedRow(), 2)));
+                this.jTFDireccion2.setText(String.valueOf(this.jTblCliente2.getValueAt(jTblCliente2.getSelectedRow(), 3)));
+                this.jTFTelefono2.setText(String.valueOf(this.jTblCliente2.getValueAt(jTblCliente2.getSelectedRow(), 6)));
                 
             }
         } else {
@@ -592,13 +591,7 @@ private void llenarCbN(){
         }
     }
     private void jBtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNuevoActionPerformed
-        habilitarBotones(false, true, false, false, true);
-        jTFNombres.requestFocus();
-        try {
-            investigarCorrelativo();
-        } catch (SQLException ex) {
-            Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+   
     }//GEN-LAST:event_jBtnNuevoActionPerformed
 
     private void jBtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarActionPerformed
@@ -620,13 +613,7 @@ private void llenarCbN(){
     }//GEN-LAST:event_jTblClienteMousePressed
 
     private void jBtnNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNuevo1ActionPerformed
-        habilitarBotones(false, true, false, false, true);
-        jTFNombres.requestFocus();
-        try {
-            investigarCorrelativo();
-        } catch (SQLException ex) {
-            Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+   
     }//GEN-LAST:event_jBtnNuevo1ActionPerformed
 
     private void jBtnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardar1ActionPerformed
@@ -647,16 +634,6 @@ private void llenarCbN(){
         habilitarBotones(false, false, true, true, true);
     }//GEN-LAST:event_jTblCliente1MousePressed
 
-    private void jBtnNuevo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNuevo2ActionPerformed
-        habilitarBotones(false, true, false, false, true);
-        jTFNombres.requestFocus();
-        try {
-            investigarCorrelativo();
-        } catch (SQLException ex) {
-            Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jBtnNuevo2ActionPerformed
-
     private void jBtnGuardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardar2ActionPerformed
         if(verificarTextField()==true){
             guardarCliente();
@@ -675,6 +652,16 @@ private void llenarCbN(){
         habilitarBotones(false, false, true, true, true);
     }//GEN-LAST:event_jTblCliente2MousePressed
 
+    private void jBtnNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNActionPerformed
+          habilitarBotones(false, true, false, false, true);
+        jTFNombres2.requestFocus();
+        try {
+            investigarCorrelativo();
+        } catch (SQLException ex) {
+            Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBtnNActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Direccion;
@@ -689,9 +676,9 @@ private void llenarCbN(){
     private javax.swing.JButton jBtnModificar;
     private javax.swing.JButton jBtnModificar1;
     private javax.swing.JButton jBtnModificar2;
+    private javax.swing.JButton jBtnN;
     private javax.swing.JButton jBtnNuevo;
     private javax.swing.JButton jBtnNuevo1;
-    private javax.swing.JButton jBtnNuevo2;
     private javax.swing.JComboBox<String> jCboNacionalidad;
     private javax.swing.JComboBox<String> jCboNacionalidad1;
     private javax.swing.JComboBox<String> jCboNacionalidad2;

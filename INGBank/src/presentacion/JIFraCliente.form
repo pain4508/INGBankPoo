@@ -296,7 +296,6 @@
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="iconifiable" type="boolean" value="true"/>
-    <Property name="maximizable" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -342,7 +341,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -401,13 +400,12 @@
                               <Component id="jTFIdCliente2" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jTFNombres2" alignment="0" pref="143" max="32767" attributes="0"/>
+                                      <Component id="jTFNombres2" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jCboSexo2" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jTFDireccion2" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                          <Component id="jBtnNuevo2" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jBtnN" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jBtnGuardar2" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -484,11 +482,13 @@
                       <Component id="jCboNacionalidad2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jBtnNuevo2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBtnGuardar2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBtnModificar2" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBtnEliminar2" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jBtnGuardar2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBtnModificar2" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBtnEliminar2" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jBtnN" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jScrollPane3" min="-2" pref="258" max="-2" attributes="0"/>
@@ -528,16 +528,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Nombres"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jBtnNuevo2">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/new.png"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnNuevo2ActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel17">
           <Properties>
@@ -650,6 +640,16 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBtnN">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/new.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnNActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
