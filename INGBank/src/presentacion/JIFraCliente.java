@@ -32,6 +32,7 @@ public class JIFraCliente
           llenarCbS();
           llenarCbN();
           habilitarBotones(true,false,false,false,false);
+         
     }
 
     /**
@@ -225,6 +226,11 @@ public class JIFraCliente
 
         setClosable(true);
         setIconifiable(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -255,14 +261,15 @@ public class JIFraCliente
         jLabel14.setText("IdCliente");
 
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Pais Origen");
+        jLabel15.setText("Pais Origen:");
 
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Nombres");
 
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Apellidos");
+        jLabel17.setText("Apellidos:");
 
+        jBtnGuardar2.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/save.png")); // NOI18N
         jBtnGuardar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnGuardar2ActionPerformed(evt);
@@ -272,18 +279,29 @@ public class JIFraCliente
         Direccion2.setForeground(new java.awt.Color(255, 255, 255));
         Direccion2.setText("Direccion");
 
+        jBtnModificar2.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/edit.png")); // NOI18N
+        jBtnModificar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnModificar2ActionPerformed(evt);
+            }
+        });
+
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Sexo");
 
+        jBtnEliminar2.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/delete.png")); // NOI18N
+        jBtnEliminar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEliminar2ActionPerformed(evt);
+            }
+        });
+
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Telefono");
+        jLabel19.setText("Telefono:");
 
         jTblCliente2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "IdCliente", "Nombres", "Apellidos", "Direccion", "Sexo", "Telefono", "Nacionalidad"
@@ -299,6 +317,7 @@ public class JIFraCliente
         jTFIdCliente2.setDisabledTextColor(new java.awt.Color(204, 0, 51));
         jTFIdCliente2.setEnabled(false);
 
+        jBtnN.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/new.png")); // NOI18N
         jBtnN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnNActionPerformed(evt);
@@ -312,50 +331,52 @@ public class JIFraCliente
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel18)
-                                .addGap(32, 32, 32))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel16)
-                                    .addComponent(Direccion2))
-                                .addGap(31, 31, 31)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTFNombres2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCboSexo2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTFDireccion2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jBtnN)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBtnGuardar2))
-                            .addComponent(jTFIdCliente2))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
+                                .addGap(37, 37, 37)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel19)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTFTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jCboNacionalidad2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel18)
+                                        .addGap(32, 32, 32))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel14)
+                                            .addComponent(jLabel16)
+                                            .addComponent(Direccion2))
+                                        .addGap(31, 31, 31)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jCboSexo2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTFDireccion2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jTFNombres2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTFIdCliente2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 3, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBtnN)
+                                .addGap(11, 11, 11)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel15))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel17)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                                        .addComponent(jTFApellidos2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jTFTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTFApellidos2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCboNacionalidad2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(14, 14, 14))
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBtnGuardar2)
                                 .addGap(18, 18, 18)
                                 .addComponent(jBtnModificar2)
-                                .addGap(18, 18, 18)
+                                .addGap(26, 26, 26)
                                 .addComponent(jBtnEliminar2)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane3)))
@@ -388,10 +409,9 @@ public class JIFraCliente
                     .addComponent(jCboNacionalidad2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jBtnGuardar2)
-                        .addComponent(jBtnModificar2, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jBtnEliminar2, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jBtnGuardar2)
+                    .addComponent(jBtnModificar2)
+                    .addComponent(jBtnEliminar2)
                     .addComponent(jBtnN))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -526,6 +546,28 @@ private void llenarCbN(){
             JOptionPane.showMessageDialog(null, "Error al almacenar el Cliente." + e);
         }
     }
+    private void modificarCliente(){
+    ClienteLogica cM = new ClienteLogica();
+    
+        cM.setIdCliente(Integer.parseInt(this.jTFIdCliente2.getText()));
+        cM.setNombres(this.jTFNombres2.getText());
+        cM.setApellidos(this.jTFApellidos2.getText());
+        cM.setDireccion(this.jTFDireccion2.getText());
+        cM.setIdSexo(this.jCboSexo2.getSelectedIndex() + 1);
+        cM.setIdNacionalidad(this.jCboNacionalidad2.getSelectedIndex() + 1);
+        cM.setTelefono(this.jTFTelefono2.getText());
+       
+        
+        try {
+            ClienteDao dao = new ClienteDao();
+            dao.modificarCliente(cM);
+            JOptionPane.showMessageDialog(null,"Registro modificado satisfactoriamente");
+            limpiar();
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error al modificar Cliente" + e );
+        }
+    }
    private void limpiarTabla(){
       
         DefaultTableModel temp = (DefaultTableModel) this.jTblCliente.getModel(); //
@@ -535,8 +577,12 @@ private void llenarCbN(){
             temp.removeRow(0);
      }
     }
-         
+     
+   private void eliminarFila(){
+ 
+   }
     private void llenarTabla() throws SQLException{
+       
         limpiarTabla();
         
         ClienteDao dao = new ClienteDao();
@@ -557,7 +603,8 @@ private void llenarCbN(){
                 fila[5] = c1.getTelefono();
                 fila[6] = c1.getIdNacionalidad();
                 temp.addRow(fila);
-        }   
+        }  
+      
     }
 
     
@@ -570,7 +617,7 @@ private void llenarCbN(){
                 this.jTFNombres2.setText(String.valueOf(this.jTblCliente2.getValueAt(jTblCliente2.getSelectedRow(), 1)));
                 this.jTFApellidos2.setText(String.valueOf(this.jTblCliente2.getValueAt(jTblCliente2.getSelectedRow(), 2)));
                 this.jTFDireccion2.setText(String.valueOf(this.jTblCliente2.getValueAt(jTblCliente2.getSelectedRow(), 3)));
-                this.jTFTelefono2.setText(String.valueOf(this.jTblCliente2.getValueAt(jTblCliente2.getSelectedRow(), 6)));
+                this.jTFTelefono2.setText(String.valueOf(this.jTblCliente2.getValueAt(jTblCliente2.getSelectedRow(), 5)));
                 
             }
         } else {
@@ -629,6 +676,27 @@ private void llenarCbN(){
             Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBtnNActionPerformed
+
+    private void jBtnModificar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnModificar2ActionPerformed
+       
+    }//GEN-LAST:event_jBtnModificar2ActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        try {
+            llenarTabla();
+        } catch (SQLException ex) {
+            Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formComponentShown
+
+    private void jBtnEliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminar2ActionPerformed
+      int fsel;
+      int resp=0;
+     JOptionPane.showConfirmDialog(null,"Esta seguro de Elimiar este registro?","Eliminar",JOptionPane.YES_NO_OPTION);
+         if(resp == JOptionPane.YES_OPTION){
+          
+          }
+    }//GEN-LAST:event_jBtnEliminar2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
