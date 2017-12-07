@@ -508,50 +508,37 @@ private void llenarCbN(){
     private void guardarCliente(){
         
         ClienteLogica c1 = new ClienteLogica();
-            if(jCboSexo2.getSelectedItem()=="Masculino"){
-            
-                   c1.setIdSexo(Integer.parseInt(this.jCboSexo2.toString()));
-                    
-         }else if(jCboSexo2.getSelectedItem()=="Femenino"){
-            
-               c1.setIdSexo(Integer.parseInt(this.jCboSexo2.toString()));
-        }else if(jCboNacionalidad2.getSelectedItem()=="Honduras"){
-            
-              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
-        }else if(jCboNacionalidad2.getSelectedItem()=="Guatemala"){
-            
-              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
-        }else if(jCboNacionalidad2.getSelectedItem()=="Nicaragua"){
-            
-              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
-        }else if(jCboNacionalidad2.getSelectedItem()=="Costarica"){
-            
-              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
-        }else if(jCboNacionalidad2.getSelectedItem()=="Estados Unidos"){
-            
-              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
-        }else if(jCboNacionalidad2.getSelectedItem()=="Mexico"){
-            
-              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
-        }else if(jCboNacionalidad2.getSelectedItem()=="Panama"){
-            
-              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
-        }else if(jCboNacionalidad2.getSelectedItem()=="Canada"){
-            
-              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
-        }else if(jCboNacionalidad2.getSelectedItem()=="Otros"){
-            
-              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
-        }
-         
         
         c1.setIdCliente(Integer.parseInt(this.jTFIdCliente2.getText()));
         c1.setNombres(this.jTFNombres2.getText());
         c1.setApellidos(this.jTFApellidos2.getText());
         c1.setDireccion(this.jTFDireccion2.getText());
-       
+                if(jCboSexo2.getSelectedItem()=="Masculino"){
+                   c1.setIdSexo(Integer.parseInt(this.jCboSexo2.toString()));
+                }else if(jCboSexo2.getSelectedItem()=="Femenino"){
+               c1.setIdSexo(Integer.parseInt(this.jCboSexo2.toString()));
+                }
         c1.setTelefono(this.jTFTelefono2.getText());
-       
+               if(jCboNacionalidad2.getSelectedItem()=="Honduras"){
+             c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Guatemala"){
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Nicaragua"){
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Costarica"){
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Estados Unidos"){
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Mexico"){
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Panama"){
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Canada"){
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }else if(jCboNacionalidad2.getSelectedItem()=="Otros"){
+              c1.setIdNacionalidad(Integer.parseInt(this.jCboNacionalidad2.toString()));
+        }
+         
              
         try {
             ClienteDao dao = new ClienteDao();
