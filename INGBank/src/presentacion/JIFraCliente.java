@@ -263,7 +263,6 @@ public class JIFraCliente
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Apellidos");
 
-        jBtnGuardar2.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/save.png")); // NOI18N
         jBtnGuardar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnGuardar2ActionPerformed(evt);
@@ -273,12 +272,8 @@ public class JIFraCliente
         Direccion2.setForeground(new java.awt.Color(255, 255, 255));
         Direccion2.setText("Direccion");
 
-        jBtnModificar2.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/edit.png")); // NOI18N
-
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Sexo");
-
-        jBtnEliminar2.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/delete.png")); // NOI18N
 
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Telefono");
@@ -301,7 +296,9 @@ public class JIFraCliente
         });
         jScrollPane3.setViewportView(jTblCliente2);
 
-        jBtnN.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/new.png")); // NOI18N
+        jTFIdCliente2.setDisabledTextColor(new java.awt.Color(204, 0, 51));
+        jTFIdCliente2.setEnabled(false);
+
         jBtnN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnNActionPerformed(evt);
@@ -328,7 +325,7 @@ public class JIFraCliente
                                 .addGap(31, 31, 31)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTFNombres2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCboSexo2, javax.swing.GroupLayout.Alignment.LEADING, 0, 123, Short.MAX_VALUE)
+                            .addComponent(jCboSexo2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTFDireccion2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -607,7 +604,7 @@ private void llenarCbN(){
     private void jBtnGuardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardar2ActionPerformed
         if(verificarTextField()==true){
             guardarCliente();
-
+            habilitarBotones(true, false, false, false, false); 
             try {
                 llenarTabla();
             } catch (SQLException ex) {

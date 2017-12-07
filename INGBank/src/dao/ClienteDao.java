@@ -92,7 +92,6 @@ public void modificarCliente(ClienteLogica c1) throws SQLException{
         Statement st = cnc.createStatement();
         ResultSet rs = st.executeQuery(sql);
         rs.first();
-        
         clienteId = rs.getInt("IdCliente");
         if(clienteId == 0){
             clienteId = 1;
