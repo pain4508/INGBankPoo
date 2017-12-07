@@ -543,7 +543,7 @@ private void llenarCbN(){
              
         try {
             ClienteDao dao = new ClienteDao();
-            dao.insertarcliente(c1);
+            dao.insertarCliente(c1);
             JOptionPane.showMessageDialog(null, "Registro almacenado satisfactoriamente.");
             limpiar();
             
@@ -607,21 +607,11 @@ private void llenarCbN(){
     }//GEN-LAST:event_jBtnNuevoActionPerformed
 
     private void jBtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarActionPerformed
-        if(verificarTextField()==true){
-            guardarCliente();
-
-            try {
-                llenarTabla();
-            } catch (SQLException ex) {
-                Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            habilitarBotones(true, false, false, false, false);
-        }
+  
     }//GEN-LAST:event_jBtnGuardarActionPerformed
 
     private void jTblClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblClienteMousePressed
-        lineaSeleccionada();
-        habilitarBotones(false, false, true, true, true);
+       
     }//GEN-LAST:event_jTblClienteMousePressed
 
     private void jBtnNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNuevo1ActionPerformed
@@ -629,21 +619,11 @@ private void llenarCbN(){
     }//GEN-LAST:event_jBtnNuevo1ActionPerformed
 
     private void jBtnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardar1ActionPerformed
-        if(verificarTextField()==true){
-            guardarCliente();
-
-            try {
-                llenarTabla();
-            } catch (SQLException ex) {
-                Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            habilitarBotones(true, false, false, false, false);
-        }
+     
     }//GEN-LAST:event_jBtnGuardar1ActionPerformed
 
     private void jTblCliente1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblCliente1MousePressed
-        lineaSeleccionada();
-        habilitarBotones(false, false, true, true, true);
+       
     }//GEN-LAST:event_jTblCliente1MousePressed
 
     private void jBtnGuardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardar2ActionPerformed
