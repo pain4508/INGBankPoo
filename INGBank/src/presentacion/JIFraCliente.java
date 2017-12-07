@@ -546,7 +546,7 @@ private void llenarCbN(){
         
         for(ClienteLogica c1:miLista){
             //Se crea un array que sera una de las filas de la tabla.
-            Object[] fila = new Object[3]; // Hay 2 columnas en la tabla
+            Object[] fila = new Object[7]; // Hay 2 columnas en la tabla
             // Se rellena cada posicion del array con una de las columnas de la tabla en base de datos.
             
                 fila[0] = c1.getIdCliente();
