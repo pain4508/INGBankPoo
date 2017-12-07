@@ -11,8 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -43,11 +45,9 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
         try {
             CuentaDao da = new CuentaDao();
             da.obtenerSaldo(cu);
-            da.modificarCuenta(cu);
-            JOptionPane.showMessageDialog(null, "Registro almacenado satisfactoriamente.");
-            llenarTabla();
-            
-        } catch (SQLException e) {
+            da.modificarCuenta(cu);                      
+            JOptionPane.showMessageDialog(null, "Registro almacenado satisfactoriamente."); 
+        }catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al almacenar el Deposito." + e);
         }
     }
@@ -61,13 +61,13 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
         
         for(CuentaLogica c1:miLista){
             //Se crea un array que sera una de las filas de la tabla.
-            Object[] fila = new Object[3]; // Hay 2 columnas en la tabla
+            Object[] fila = new Object[4]; // Hay 2 columnas en la tabla
             // Se rellena cada posicion del array con una de las columnas de la tabla en base de datos.
             
                 fila[0] = c1.getIdCuenta();
                 fila[1] = c1.getSaldo();
-                fila[2] = c1.getSaldoDepositado();
-                fila[2] = c1.getSaldoActual();
+                fila[2] = jTFMonto.getText();
+                fila[3] = c1.setSaldoActual(c1.getSaldo(), Double.parseDouble(jTFMonto.getText()));
                 temp.addRow(fila);
         }   
     }
@@ -136,7 +136,7 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Cuenta", "Saldo Anterior", "Saldo Retirado", "Saldo Actual"
+                "Cuenta", "Saldo Anterior", "Saldo Depositado", "Saldo Actual"
             }
         ) {
             boolean[] canEdit = new boolean [] {

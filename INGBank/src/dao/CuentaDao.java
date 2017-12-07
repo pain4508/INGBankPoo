@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 import logica.ClienteLogica;
 import logica.CuentaLogica;
+import presentacion.JIFraDepositos;
 
 /**
  *
@@ -30,13 +31,15 @@ public class CuentaDao {
     }
     
     public void modificarCuenta(CuentaLogica c1) throws SQLException{
+        double s,sd;
+        s = c1.getSaldo();
        //Preparar la consulta  
               String sql="UPDATE cuenta "
                 +"Set Saldo = ? "
                 +"Where IdCuenta = ? ";
               
        try (PreparedStatement st =(PreparedStatement) cnc.prepareStatement(sql)){
-            st.setDouble(1, c1.getSaldoActual());
+            st.setDouble(1, c1.setSaldoActual(s, c1.getSaldoDepositado()));
             st.setInt(2, c1.getIdCuenta());
             st.execute();
        } 
@@ -71,8 +74,7 @@ public class CuentaDao {
           while(rs.next()){
               CuentaLogica c1 = new CuentaLogica();
               c1.setIdCuenta(rs.getInt("IdCuenta"));
-              c1.setSaldo(rs.getDouble("Saldo"));
-                  
+              c1.setSaldo(rs.getDouble("Saldo"));                
               miLista.add(c1);
               
           }

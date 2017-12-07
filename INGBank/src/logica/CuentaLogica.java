@@ -19,7 +19,14 @@ public class CuentaLogica {
     private double saldo;
     private double saldoDepositado;
     private double saldoActual;
+     public int getIdCuenta() {
+        return IdCuenta;
+    }
 
+    public void setIdCuenta(int IdCuenta) {
+        this.IdCuenta = IdCuenta;
+    }
+    
     public double getSaldoDepositado() {
         return saldoDepositado;
     }
@@ -28,30 +35,18 @@ public class CuentaLogica {
         this.saldoDepositado = saldoDepositado;
     }
     
-    public double getSaldoActual() {
-        return saldoActual;
-    }
-
-    public void setSaldoActual(double saldoActual) {
-        this.saldoActual = this.saldo + this.saldoDepositado;
-    }
-    
-
-    public int getIdCuenta() {
-        return IdCuenta;
-    }
-
-    public void setIdCuenta(int IdCuenta) {
-        this.IdCuenta = IdCuenta;
-    }
-
-    public double getSaldo() {
+       public double getSaldo() {
         return saldo;
     }
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
+    
  
+
+    public double setSaldoActual(double saldo,double saldoDepositado) {
+        return saldo + saldoDepositado;
+    }
     
 }

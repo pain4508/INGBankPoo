@@ -155,7 +155,7 @@
               <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="Cuenta" type="java.lang.Object"/>
                 <Column editable="false" title="Saldo Anterior" type="java.lang.Object"/>
-                <Column editable="false" title="Saldo Retirado" type="java.lang.Object"/>
+                <Column editable="false" title="Saldo Depositado" type="java.lang.Object"/>
                 <Column editable="false" title="Saldo Actual" type="java.lang.Object"/>
               </Table>
             </Property>
