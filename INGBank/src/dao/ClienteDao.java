@@ -32,7 +32,7 @@ public class ClienteDao {
         
     }
        //Insertar cliente
-public void insertarcliente(ClienteLogica c1) throws SQLException{
+public void insertarCliente(ClienteLogica c1) throws SQLException{
        //Preparar la consulta 
        String sql= "Insert into Cliente(IdCliente,Nombres,Apellidos,Direccion,IdSexo,Telefono,IdNacionalidad) "
                 +"Values(?,?,?,?,?,?,?) ";
@@ -49,7 +49,7 @@ public void insertarcliente(ClienteLogica c1) throws SQLException{
        } 
    }
    
-public void modificarcliente(ClienteLogica c1) throws SQLException{
+public void modificarCliente(ClienteLogica c1) throws SQLException{
        //Preparar la consulta 
        String sql="Update  Cliente "
                +"Set IdCliente = ? "
@@ -72,7 +72,7 @@ public void modificarcliente(ClienteLogica c1) throws SQLException{
             st.execute();
        } 
    }
- public void eliminarcliente(ClienteLogica c1) throws SQLException{
+ public void eliminarCliente(ClienteLogica c1) throws SQLException{
        //Preparar la consulta 
        String sql="Delete "
                 +"From Cliente = ? "
