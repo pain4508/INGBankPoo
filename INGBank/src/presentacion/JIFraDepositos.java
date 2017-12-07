@@ -39,11 +39,13 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
         CuentaLogica cu = new CuentaLogica();
         
         cu.setIdCuenta(Integer.parseInt(jTFCuenta.getText()));
-        cu.setSaldo(Double.parseDouble(this.jTFMonto.getText()));        
+        cu.setSaldoDepositado(Double.parseDouble(this.jTFMonto.getText()));        
         try {
             CuentaDao da = new CuentaDao();
+            da.obtenerSaldo(cu);
             da.modificarCuenta(cu);
             JOptionPane.showMessageDialog(null, "Registro almacenado satisfactoriamente.");
+            llenarTabla();
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al almacenar el Deposito." + e);
@@ -64,6 +66,8 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
             
                 fila[0] = c1.getIdCuenta();
                 fila[1] = c1.getSaldo();
+                fila[2] = c1.getSaldoDepositado();
+                fila[2] = c1.getSaldoActual();
                 temp.addRow(fila);
         }   
     }
@@ -129,17 +133,14 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
 
         jTblCuenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "IdCuenta", "Saldo"
+                "Cuenta", "Saldo Anterior", "Saldo Retirado", "Saldo Actual"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -187,9 +188,9 @@ public class JIFraDepositos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jBtnDepositar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
