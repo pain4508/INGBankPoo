@@ -47,9 +47,10 @@ public class CuentaDao {
                        +"FROM cuenta " 
                        +"Where idcuenta = ? ";
         try(PreparedStatement consulta = cnc.prepareStatement(query)){
-        consulta.setInt(1, c1.getIdCuenta());
-        ResultSet resultado = consulta.executeQuery();
-        c1.setSaldo(Double.parseDouble(resultado.getString(1)));
+            consulta.setInt(1, c1.getIdCuenta());
+            ResultSet resultado = consulta.executeQuery();
+            resultado.first();
+            c1.setSaldo(resultado.getDouble("saldo"));
         }
         
        }  
