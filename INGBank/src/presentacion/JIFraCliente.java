@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logica.ClienteLogica;
@@ -495,7 +496,7 @@ private void llenarCbN(){
       
      
       
-  private void limpiar(){
+  private void limpiar() {
        jTFIdCliente2.setText("");
        jTFNombres2.setText("");
        jTFApellidos2.setText("");
@@ -547,20 +548,20 @@ private void llenarCbN(){
         }
     }
     private void modificarCliente(){
-    ClienteLogica cM = new ClienteLogica();
+    ClienteLogica c1 = new ClienteLogica();
     
-        cM.setIdCliente(Integer.parseInt(this.jTFIdCliente2.getText()));
-        cM.setNombres(this.jTFNombres2.getText());
-        cM.setApellidos(this.jTFApellidos2.getText());
-        cM.setDireccion(this.jTFDireccion2.getText());
-        cM.setIdSexo(this.jCboSexo2.getSelectedIndex() + 1);
-        cM.setIdNacionalidad(this.jCboNacionalidad2.getSelectedIndex() + 1);
-        cM.setTelefono(this.jTFTelefono2.getText());
        
+        c1.setNombres(this.jTFNombres2.getText());
+        c1.setApellidos(this.jTFApellidos2.getText());
+        c1.setDireccion(this.jTFDireccion2.getText());
+        c1.setIdSexo(this.jCboSexo2.getSelectedIndex() + 1);
+        c1.setTelefono(this.jTFTelefono2.getText());
+        c1.setIdNacionalidad(this.jCboNacionalidad2.getSelectedIndex() + 1);
+        c1.setIdCliente(Integer.parseInt(this.jTFIdCliente2.getText()));
         
         try {
             ClienteDao dao = new ClienteDao();
-            dao.modificarCliente(cM);
+            dao.modificarCliente(c1);
             JOptionPane.showMessageDialog(null,"Registro modificado satisfactoriamente");
             limpiar();
             
@@ -568,9 +569,25 @@ private void llenarCbN(){
             JOptionPane.showMessageDialog(null,"Error al modificar Cliente" + e );
         }
     }
+     private void eliminarCliente(){
+   ClienteLogica c1 = new ClienteLogica();
+    
+             c1.setIdCliente(Integer.parseInt(this.jTFIdCliente2.getText()));
+        
+        try {
+            ClienteDao dao = new ClienteDao();
+            dao.eliminarCliente(c1);
+            JOptionPane.showMessageDialog(null,"Registro eliminado satisfactoriamente");
+            limpiar();
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error al eliminar Cliente" + e );
+        }
+   }
+   
    private void limpiarTabla(){
       
-        DefaultTableModel temp = (DefaultTableModel) this.jTblCliente.getModel(); //
+        DefaultTableModel temp = (DefaultTableModel) this.jTblCliente2.getModel(); //
         
         // Limpiar los datos de la tabla.
         while (temp.getRowCount() > 0) {
@@ -578,9 +595,7 @@ private void llenarCbN(){
      }
     }
      
-   private void eliminarFila(){
- 
-   }
+  
     private void llenarTabla() throws SQLException{
        
         limpiarTabla();
@@ -603,12 +618,9 @@ private void llenarCbN(){
                 fila[5] = c1.getTelefono();
                 fila[6] = c1.getIdNacionalidad();
                 temp.addRow(fila);
-        }  
-      
-    }
-
-    
-        
+               
+        }   
+    }   
     private void lineaSeleccionada() {
         if (this.jTblCliente2.getSelectedRow() != -1) {
             //Habilito los controles para que se pueda hacer una accion.
@@ -617,6 +629,7 @@ private void llenarCbN(){
                 this.jTFNombres2.setText(String.valueOf(this.jTblCliente2.getValueAt(jTblCliente2.getSelectedRow(), 1)));
                 this.jTFApellidos2.setText(String.valueOf(this.jTblCliente2.getValueAt(jTblCliente2.getSelectedRow(), 2)));
                 this.jTFDireccion2.setText(String.valueOf(this.jTblCliente2.getValueAt(jTblCliente2.getSelectedRow(), 3)));
+                
                 this.jTFTelefono2.setText(String.valueOf(this.jTblCliente2.getValueAt(jTblCliente2.getSelectedRow(), 5)));
                 
             }
@@ -678,24 +691,41 @@ private void llenarCbN(){
     }//GEN-LAST:event_jBtnNActionPerformed
 
     private void jBtnModificar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnModificar2ActionPerformed
-       
-    }//GEN-LAST:event_jBtnModificar2ActionPerformed
-
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+      modificarCliente();
         try {
             llenarTabla();
         } catch (SQLException ex) {
             Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
+         habilitarBotones(true, false, false, false, false);
+    }//GEN-LAST:event_jBtnModificar2ActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        try {
+            llenarTabla();
+          DefaultTableModel temp = (DefaultTableModel) this.jTblCliente2.getModel();
+           temp.fireTableDataChanged();
+        } catch (SQLException ex) {
+            Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_formComponentShown
 
     private void jBtnEliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminar2ActionPerformed
-      int fsel;
-      int resp=0;
-     JOptionPane.showConfirmDialog(null,"Esta seguro de Elimiar este registro?","Eliminar",JOptionPane.YES_NO_OPTION);
-         if(resp == JOptionPane.YES_OPTION){
-          
-          }
+
+        if (JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar el registro?", "Advertencia",
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+         eliminarCliente();
+           try {
+                llenarTabla();
+            } catch (SQLException ex) {
+                Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            habilitarBotones(true, false, false, false, false);
+       
+            } else {
+    // no option
+        }   
     }//GEN-LAST:event_jBtnEliminar2ActionPerformed
 
 

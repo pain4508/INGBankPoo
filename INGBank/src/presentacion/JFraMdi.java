@@ -97,6 +97,11 @@ public class JFraMdi extends javax.swing.JFrame {
         jMenu5.setText("Cuentas");
 
         jMenuItem3.setText("Crear Cuenta");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem3);
 
         jMenuBar2.add(jMenu5);
@@ -179,6 +184,15 @@ public class JFraMdi extends javax.swing.JFrame {
         re.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
         re.show();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+       JIFraCuenta cta = new JIFraCuenta();
+        this.jDesktopPane1.add(cta);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = cta.getSize();
+        cta.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        cta.show();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments

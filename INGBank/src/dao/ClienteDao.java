@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.swing.JOptionPane;
 import logica.ClienteLogica;
 import logica.NacionalidadLogica;
 import logica.SexoLogica;
@@ -51,31 +52,25 @@ public void insertarCliente(ClienteLogica c1) throws SQLException{
    
 public void modificarCliente(ClienteLogica c1) throws SQLException{
        //Preparar la consulta 
-       String sql="Update  Cliente "
-               +"Set IdCliente = ? "
-                +"Set Nombres = ? "
-                +"Set Apellidos = ? "
-                +"Set Direccion = ? "
-               +"Set IdSexo = ? "
-                +"Set Telefono = ? "
-               +"Set IdNacionalidad = ? "
-                +"Where IdCliente = ? ";
+       String sql="UPDATE Cliente SET Nombres=?, Apellidos=?, Direccion=?, IdSexo=?, Telefono=?, IdNacionalidad=? "
+                    + "WHERE IdCliente=?";
        
        try (PreparedStatement st =(PreparedStatement) cnc.prepareStatement(sql)){
-             st.setInt(1, c1.getIdCliente()); 
-           st.setString(2, c1.getNombres());
-             st.setString(3, c1.getApellidos());
-              st.setString(4, c1.getDireccion());
-               st.setInt(5, c1.getIdSexo());
-               st.setString(6, c1.getTelefono());
-                st.setInt(7, c1.getIdNacionalidad());
-            st.execute();
-       } 
+             
+           st.setString(1, c1.getNombres());
+           st.setString(2, c1.getApellidos());
+           st.setString(3, c1.getDireccion());
+           st.setInt(4, c1.getIdSexo());
+           st.setString(5, c1.getTelefono());
+           st.setInt(6, c1.getIdNacionalidad());
+           st.setInt(7, c1.getIdCliente());
+           st.executeUpdate();
    }
+}
  public void eliminarCliente(ClienteLogica c1) throws SQLException{
        //Preparar la consulta 
        String sql="Delete "
-                +"From Cliente = ? "
+                +"From Cliente "
                 +"Where IdCliente = ? ";
        
        try (PreparedStatement st = cnc.prepareStatement(sql)){
