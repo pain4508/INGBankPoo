@@ -6,6 +6,7 @@
 package presentacion;
 
 import dao.ClienteDao;
+import dao.TipoCuentaDao;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -480,6 +481,8 @@ private void llenarCbN(){
     }
     
 }
+
+
 
       private void habilitarBotones(boolean nuevo, boolean guardar, boolean modificar, boolean eliminar, boolean textField){
         jBtnN.setEnabled(nuevo);

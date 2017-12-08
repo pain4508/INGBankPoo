@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Set;
 import logica.ClienteLogica;
 import logica.CuentaLogica;
+import logica.SexoLogica;
+import logica.TipoCuentaLogica;
 import presentacion.JIFraDepositos;
 
 /**
@@ -81,5 +83,6 @@ public class CuentaDao {
       }      
     return miLista;
   }
+
     
 }
