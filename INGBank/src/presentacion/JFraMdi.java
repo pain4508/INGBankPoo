@@ -152,17 +152,12 @@ public class JFraMdi extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-       
-        JIFraDepositos de = new JIFraDepositos();
-        this.jDesktopPane1.add(de);
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = de.getSize();
-        de.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-        de.setVisible(true);
+      
+    
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+     
         System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -176,13 +171,7 @@ public class JFraMdi extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-        JIFraRetiro re = new JIFraRetiro();
-        this.jDesktopPane1.add(re);
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = re.getSize();
-        re.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-        re.show();
+
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed

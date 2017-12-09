@@ -16,37 +16,68 @@ import java.sql.SQLException;
  */
 public class CuentaLogica {
     private int IdCuenta;
+    private int IdCliente;
+    private int IdTipoCuenta;
     private double saldo;
-    private double saldoDepositado;
-    private double saldoActual;
-     public int getIdCuenta() {
+    private String Fecha_de_Creacion;
+    private int IdMovimiento;
+    private int IdUsuario;
+
+    public int getIdCuenta() {
         return IdCuenta;
     }
 
     public void setIdCuenta(int IdCuenta) {
         this.IdCuenta = IdCuenta;
     }
-    
-    public double getSaldoDepositado() {
-        return saldoDepositado;
+
+    public int getIdCliente() {
+        return IdCliente;
     }
 
-    public void setSaldoDepositado(double saldoDepositado) {
-        this.saldoDepositado = saldoDepositado;
+    public void setIdCliente(int IdCliente) {
+        this.IdCliente = IdCliente;
     }
-    
-       public double getSaldo() {
+
+    public int getIdTipoCuenta() {
+        return IdTipoCuenta;
+    }
+
+    public void setIdTipoCuenta(int IdTipoCuenta) {
+        this.IdTipoCuenta = IdTipoCuenta;
+    }
+
+    public double getSaldo() {
         return saldo;
     }
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-    
- 
 
-    public double setSaldoActual(double saldo,double saldoDepositado) {
-        return saldo + saldoDepositado;
+    public String getFecha_de_Creacion() {
+        return Fecha_de_Creacion;
     }
+
+    public void setFecha_de_Creacion(String Fecha_de_Creacion) {
+        this.Fecha_de_Creacion = Fecha_de_Creacion;
+    }
+
+    public int getIdMovimiento() {
+        return IdMovimiento;
+    }
+
+    public void setIdMovimiento(int IdMovimiento) {
+        this.IdMovimiento = IdMovimiento;
+    }
+
+    public int getIdUsuario() {
+        return IdUsuario;
+    }
+
+    public void setIdUsuario(int IdUsuario) {
+        this.IdUsuario = IdUsuario;
+    }
+    
     
 }
