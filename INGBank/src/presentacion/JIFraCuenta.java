@@ -59,8 +59,6 @@ public class JIFraCuenta
         jCboTipoc = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTblCuenta = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
-        jCboUsuario = new javax.swing.JComboBox<>();
         jBtnNuevo = new javax.swing.JButton();
         jBtnGuardar = new javax.swing.JButton();
         jBtnModificar = new javax.swing.JButton();
@@ -125,9 +123,6 @@ public class JIFraCuenta
         });
         jScrollPane1.setViewportView(jTblCuenta);
 
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Usuario Creador");
-
         jBtnNuevo.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/new.png")); // NOI18N
 
         jBtnGuardar.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/save.png")); // NOI18N
@@ -179,15 +174,13 @@ public class JIFraCuenta
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jCboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(31, 31, 31)
+                                .addGap(37, 37, 37)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel8))
+                                    .addComponent(jLabel4))
                                 .addGap(24, 24, 24)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jFTFSaldo)
-                                    .addComponent(jCboUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jFTFFechaC, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -208,13 +201,9 @@ public class JIFraCuenta
                     .addComponent(jLabel4)
                     .addComponent(jFTFSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jCboTipoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8)
-                        .addComponent(jCboUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jCboTipoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBtnNuevo)
@@ -259,7 +248,7 @@ public class JIFraCuenta
         c1.setSaldo(Double.parseDouble(this.jFTFSaldo.getText()));
         c1.setFecha_de_Creacion(this.jFTFFechaC.getText());
         c1.setIdTipoCuenta(this.jCboTipoc.getSelectedIndex() + 1);
-        c1.setIdUsuario(this.jCboUsuario.getSelectedIndex() + 1);
+     
          
              
         try {
@@ -283,7 +272,7 @@ public class JIFraCuenta
         
         for(CuentaLogica c1:miLista){
             //Se crea un array que sera una de las filas de la tabla.
-            Object[] fila = new Object[7]; // Hay 2 columnas en la tabla
+            Object[] fila = new Object[6]; // Hay 2 columnas en la tabla
             // Se rellena cada posicion del array con una de las columnas de la tabla en base de datos.
             
                 fila[0] = c1.getIdCuenta();
@@ -292,7 +281,7 @@ public class JIFraCuenta
                 fila[3] = c1.getSaldo();
                 fila[4] = c1.getFecha_de_Creacion();
                 fila[5] = c1.getIdTipoCuenta();
-                fila[6] = c1.getIdUsuario();
+              
                 temp.addRow(fila);
                
         } 
@@ -355,7 +344,6 @@ private void llenarCTipoC(){
     private javax.swing.JButton jBtnNuevo;
     private javax.swing.JComboBox<String> jCboCliente;
     private javax.swing.JComboBox<String> jCboTipoc;
-    private javax.swing.JComboBox<String> jCboUsuario;
     private javax.swing.JFormattedTextField jFTFFechaC;
     private javax.swing.JFormattedTextField jFTFSaldo;
     private javax.swing.JLabel jLabel1;
@@ -364,7 +352,6 @@ private void llenarCTipoC(){
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
