@@ -5,8 +5,10 @@
  */
 package presentacion;
 
+
 import dao.ClienteDao;
 import dao.CuentaDao;
+import dao.MovimientoDao;
 import dao.TipoCuentaDao;
 import java.sql.SQLException;
 import java.util.List;
@@ -16,8 +18,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logica.ClienteLogica;
 import logica.CuentaLogica;
+import logica.MovimientoLogica;
 import logica.NacionalidadLogica;
-import logica.SexoLogica;
 import logica.TipoCuentaLogica;
 
 /**
@@ -34,7 +36,8 @@ public class JIFraCuenta
         initComponents();
         llenarCC();
         llenarCTipoC();
-        
+        llenarCMov();
+        habilitarBotones(true,false,false,false,false);
     }
 
     /**
@@ -65,6 +68,10 @@ public class JIFraCuenta
         jBtnEliminar = new javax.swing.JButton();
         jFTFFechaC = new javax.swing.JFormattedTextField();
         jFTFSaldo = new javax.swing.JFormattedTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jCboMovimiento = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jTFMonto = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -113,9 +120,14 @@ public class JIFraCuenta
 
             },
             new String [] {
-                "Numero Cuenta", "Cliente", "Tipo Cuenta", "Saldo Cuenta", "Fecha de Creacion", "Usuario"
+                "Numero Cuenta", "Cliente", "Tipo Cuenta", "Fecha de Creacion", "Tipo Movimiento", "Saldo Anterior", "Saldo Movimiento", "Saldo Actual"
             }
         ));
+        jTblCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTblCuentaMousePressed(evt);
+            }
+        });
         jTblCuenta.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 jTblCuentaComponentShown(evt);
@@ -124,8 +136,18 @@ public class JIFraCuenta
         jScrollPane1.setViewportView(jTblCuenta);
 
         jBtnNuevo.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/new.png")); // NOI18N
+        jBtnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnNuevoActionPerformed(evt);
+            }
+        });
 
         jBtnGuardar.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/save.png")); // NOI18N
+        jBtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnGuardarActionPerformed(evt);
+            }
+        });
 
         jBtnModificar.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/edit.png")); // NOI18N
 
@@ -139,15 +161,18 @@ public class JIFraCuenta
 
         jFTFSaldo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Tipo Movimiento");
+
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Monto");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -177,12 +202,20 @@ public class JIFraCuenta
                                 .addGap(37, 37, 37)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel4))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
                                 .addGap(24, 24, 24)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jFTFSaldo)
-                                    .addComponent(jFTFFechaC, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTFMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jFTFSaldo)
+                                        .addComponent(jFTFFechaC, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                                        .addComponent(jCboMovimiento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(0, 143, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -203,14 +236,20 @@ public class JIFraCuenta
                 .addGap(13, 13, 13)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jCboTipoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                    .addComponent(jCboTipoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jCboMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTFMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBtnNuevo)
                     .addComponent(jBtnGuardar)
                     .addComponent(jBtnModificar)
                     .addComponent(jBtnEliminar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -271,20 +310,38 @@ public class JIFraCuenta
         DefaultTableModel temp = (DefaultTableModel) this.jTblCuenta.getModel(); 
         
         for(CuentaLogica c1:miLista){
-            //Se crea un array que sera una de las filas de la tabla.
-            Object[] fila = new Object[6]; // Hay 2 columnas en la tabla
-            // Se rellena cada posicion del array con una de las columnas de la tabla en base de datos.
+          
+            Object[] fila = new Object[5];
+           
             
                 fila[0] = c1.getIdCuenta();
                 fila[1] = c1.getIdCliente();
                 fila[2] = c1.getIdTipoCuenta();
                 fila[3] = c1.getSaldo();
                 fila[4] = c1.getFecha_de_Creacion();
-                fila[5] = c1.getIdTipoCuenta();
-              
                 temp.addRow(fila);
                
         } 
+}
+private void llenarCMov(){
+       try{
+        MovimientoDao dao = new MovimientoDao();   
+        jCboMovimiento.removeAllItems();
+
+        List<MovimientoLogica> miComboMov;
+
+        miComboMov = dao.getComboMov();
+
+        for(int i=0; i<miComboMov.size();i++){
+
+            jCboMovimiento.addItem(miComboMov.get(i).getMovimiento());
+        }
+        
+        
+    }catch(SQLException e){
+        JOptionPane.showMessageDialog(null, e);
+    }
+    
 }
  private void llenarCC(){
        try{
@@ -334,6 +391,80 @@ private void llenarCTipoC(){
             Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jTblCuentaComponentShown
+        private void investigarCorrelativo() throws SQLException{
+        CuentaDao dao = new CuentaDao();
+        CuentaLogica c1 = new CuentaLogica();
+        c1.setIdCuenta(dao.autoIncrementar());
+        jTFIdCuenta.setText(String.valueOf(c1.getIdCuenta()));
+        
+    }
+    private boolean verificarTextField(){
+        boolean estado;
+        
+        if(jTFIdCuenta.getText().isEmpty()  || jFTFFechaC.getText().isEmpty() || jFTFSaldo.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese los campos vacios");
+            estado = false;    
+        }else{
+            estado = true;
+        }
+        return estado;
+    }
+         private void habilitarBotones(boolean nuevo, boolean guardar, boolean modificar, boolean eliminar, boolean textField){
+        jTFIdCuenta.setEnabled(nuevo);
+        jBtnGuardar.setEnabled(guardar);
+        jBtnModificar.setEnabled(modificar);
+        jBtnEliminar.setEnabled(eliminar);
+        jTFIdCuenta.setEditable(textField);
+        jCboCliente.setEditable(textField);
+        jCboTipoc.setEditable(textField);
+        jFTFFechaC.setEditable(textField);
+        jFTFSaldo.setEditable(textField);
+        jTFMonto.setEditable(textField);
+        
+    }  
+       private void lineaSeleccionada() {
+        if (this.jTblCuenta.getSelectedRow() != -1) {
+            //Habilito los controles para que se pueda hacer una accion.
+            if (this.jTblCuenta.isEnabled() == true) {
+                this.jTFIdCuenta.setText(String.valueOf(this.jTblCuenta.getValueAt(jTblCuenta.getSelectedRow(), 0)));
+                this.jFTFSaldo.setText(String.valueOf(this.jTblCuenta.getValueAt(jTblCuenta.getSelectedRow(), 3)));
+                this.jFTFFechaC.setText(String.valueOf(this.jTblCuenta.getValueAt(jTblCuenta.getSelectedRow(), 4)));
+                
+            }
+        } else {
+            limpiar();
+        }
+    }
+     
+    private void jBtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarActionPerformed
+            if(verificarTextField()==true){
+            guardarCuenta();
+            habilitarBotones(true, false, false, false, false); 
+            try {
+                llenarTCuenta();
+            } catch (SQLException ex) {
+                Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          
+        }
+    }//GEN-LAST:event_jBtnGuardarActionPerformed
+
+    private void jBtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNuevoActionPerformed
+          limpiar();
+        habilitarBotones(false, true, false, false, true);
+       
+        try {
+            investigarCorrelativo();
+        } catch (SQLException ex) {
+            Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             habilitarBotones(false, true, false, false, true);
+    }//GEN-LAST:event_jBtnNuevoActionPerformed
+
+    private void jTblCuentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblCuentaMousePressed
+       lineaSeleccionada();
+        habilitarBotones(false, false, true, true, true);
+    }//GEN-LAST:event_jTblCuentaMousePressed
 
   
 
@@ -343,6 +474,7 @@ private void llenarCTipoC(){
     private javax.swing.JButton jBtnModificar;
     private javax.swing.JButton jBtnNuevo;
     private javax.swing.JComboBox<String> jCboCliente;
+    private javax.swing.JComboBox<String> jCboMovimiento;
     private javax.swing.JComboBox<String> jCboTipoc;
     private javax.swing.JFormattedTextField jFTFFechaC;
     private javax.swing.JFormattedTextField jFTFSaldo;
@@ -352,10 +484,13 @@ private void llenarCTipoC(){
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFIdCuenta;
+    private javax.swing.JTextField jTFMonto;
     private javax.swing.JTable jTblCuenta;
     // End of variables declaration//GEN-END:variables
 }

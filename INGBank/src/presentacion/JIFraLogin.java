@@ -54,6 +54,11 @@ public class JIFraLogin
                 JBtnAccederActionPerformed(evt);
             }
         });
+        JBtnAcceder.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JBtnAccederKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,7 +67,7 @@ public class JIFraLogin
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(262, Short.MAX_VALUE)
+                        .addContainerGap(260, Short.MAX_VALUE)
                         .addComponent(jLabel3))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -73,7 +78,7 @@ public class JIFraLogin
                     .addComponent(jTFLogin)
                     .addComponent(jPFContrasena)
                     .addComponent(JBtnAcceder, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
-                .addGap(73, 73, 73))
+                .addGap(75, 75, 75))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,11 +105,11 @@ public class JIFraLogin
     private void JBtnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnAccederActionPerformed
         String usu = jTFLogin.getText();
         String pass = new String(jPFContrasena.getPassword());
-        JFraMdi mdi = new JFraMdi();
+       
       
         if(usu.equals("admin")&& pass.equals("1234")){
            this.dispose();
-            
+         
             
          
        
@@ -120,6 +125,10 @@ public class JIFraLogin
         }
       
     }//GEN-LAST:event_JBtnAccederActionPerformed
+
+    private void JBtnAccederKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JBtnAccederKeyPressed
+       
+    }//GEN-LAST:event_JBtnAccederKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

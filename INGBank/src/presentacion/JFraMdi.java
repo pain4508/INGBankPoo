@@ -24,6 +24,8 @@ public class JFraMdi extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH);
       
+        
+      
     }
 
     /**
@@ -149,7 +151,7 @@ public class JFraMdi extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-
+      
         JIFraLogin lg = new JIFraLogin();
         this.jDesktopPane1.add(lg);
         Dimension desktopSize = jDesktopPane1.getSize();
