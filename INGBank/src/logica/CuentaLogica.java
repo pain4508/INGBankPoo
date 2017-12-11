@@ -20,9 +20,7 @@ public class CuentaLogica {
     private int IdTipoCuenta;
     private double saldo;
     private String Fecha_de_Creacion;
-    private int IdMovimiento;
-    private int IdUsuario;
-
+   
     public int getIdCuenta() {
         return IdCuenta;
     }
@@ -61,23 +59,5 @@ public class CuentaLogica {
 
     public void setFecha_de_Creacion(String Fecha_de_Creacion) {
         this.Fecha_de_Creacion = Fecha_de_Creacion;
-    }
-
-    public int getIdMovimiento() {
-        return IdMovimiento;
-    }
-
-    public void setIdMovimiento(int IdMovimiento) {
-        this.IdMovimiento = IdMovimiento;
-    }
-
-    public int getIdUsuario() {
-        return IdUsuario;
-    }
-
-    public void setIdUsuario(int IdUsuario) {
-        this.IdUsuario = IdUsuario;
-    }
-    
-    
+    }  
 }

@@ -30,7 +30,7 @@ public class CuentaDao {
     }
  public void insertarCuenta(CuentaLogica c1) throws SQLException{
        //Preparar la consulta 
-       String sql= "Insert into Cuenta(IdCuenta,IdTipoCuenta,Saldo,Fecha_de_Creacion,IdMoviento,IdUsuario) "
+       String sql= "Insert into Cuenta(IdCuenta,IdTipoCuenta,Saldo,Fecha_de_Creacion) "
                 +"Values(?,?,?,?,?,?,?) ";
        try (PreparedStatement st =(PreparedStatement) cnc.prepareStatement(sql)){
            
@@ -39,7 +39,6 @@ public class CuentaDao {
             st.setInt(3, c1.getIdTipoCuenta());
             st.setDouble(4, c1.getSaldo());
             st.setString(5, c1.getFecha_de_Creacion());
-            st.setInt(6, c1.getIdMovimiento());
             st.execute();
        } 
    }  
@@ -60,7 +59,6 @@ public class CuentaDao {
               c1.setIdTipoCuenta(rs.getInt("IdTipoCuenta"));
               c1.setSaldo(rs.getDouble("Saldo"));
               c1.setFecha_de_Creacion(rs.getString("Fecha_de_Creacion"));
-              c1.setIdMovimiento(rs.getInt("IdMovimiento"));
                   
               miLista.add(c1);
               

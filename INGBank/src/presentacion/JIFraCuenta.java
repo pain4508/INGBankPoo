@@ -36,7 +36,6 @@ public class JIFraCuenta
         initComponents();
         llenarCC();
         llenarCTipoC();
-        llenarCMov();
         habilitarBotones(true,false,false,false,false);
     }
 
@@ -68,10 +67,6 @@ public class JIFraCuenta
         jBtnEliminar = new javax.swing.JButton();
         jFTFFechaC = new javax.swing.JFormattedTextField();
         jFTFSaldo = new javax.swing.JFormattedTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jCboMovimiento = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
-        jTFMonto = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -120,7 +115,7 @@ public class JIFraCuenta
 
             },
             new String [] {
-                "Numero Cuenta", "Cliente", "Tipo Cuenta", "Fecha de Creacion", "Tipo Movimiento", "Saldo Anterior", "Saldo Movimiento", "Saldo Actual"
+                "Numero Cuenta", "Cliente", "Tipo Cuenta", "Fecha de Creacion", "Saldo Inicial"
             }
         ));
         jTblCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -161,12 +156,6 @@ public class JIFraCuenta
 
         jFTFSaldo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Tipo Movimiento");
-
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Monto");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -199,19 +188,14 @@ public class JIFraCuenta
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jCboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(37, 37, 37)
+                                .addGap(48, 48, 48)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
+                                    .addComponent(jLabel4))
                                 .addGap(24, 24, 24)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTFMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jFTFSaldo)
-                                        .addComponent(jFTFFechaC, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                                        .addComponent(jCboMovimiento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jFTFSaldo)
+                                    .addComponent(jFTFFechaC, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))))
                         .addGap(0, 143, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
@@ -236,14 +220,8 @@ public class JIFraCuenta
                 .addGap(13, 13, 13)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jCboTipoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jCboMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTFMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                    .addComponent(jCboTipoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBtnNuevo)
                     .addComponent(jBtnGuardar)
@@ -323,26 +301,7 @@ public class JIFraCuenta
                
         } 
 }
-private void llenarCMov(){
-       try{
-        MovimientoDao dao = new MovimientoDao();   
-        jCboMovimiento.removeAllItems();
 
-        List<MovimientoLogica> miComboMov;
-
-        miComboMov = dao.getComboMov();
-
-        for(int i=0; i<miComboMov.size();i++){
-
-            jCboMovimiento.addItem(miComboMov.get(i).getMovimiento());
-        }
-        
-        
-    }catch(SQLException e){
-        JOptionPane.showMessageDialog(null, e);
-    }
-    
-}
  private void llenarCC(){
        try{
         TipoCuentaDao dao = new TipoCuentaDao();   
@@ -419,7 +378,7 @@ private void llenarCTipoC(){
         jCboTipoc.setEditable(textField);
         jFTFFechaC.setEditable(textField);
         jFTFSaldo.setEditable(textField);
-        jTFMonto.setEditable(textField);
+       
         
     }  
        private void lineaSeleccionada() {
@@ -474,7 +433,6 @@ private void llenarCTipoC(){
     private javax.swing.JButton jBtnModificar;
     private javax.swing.JButton jBtnNuevo;
     private javax.swing.JComboBox<String> jCboCliente;
-    private javax.swing.JComboBox<String> jCboMovimiento;
     private javax.swing.JComboBox<String> jCboTipoc;
     private javax.swing.JFormattedTextField jFTFFechaC;
     private javax.swing.JFormattedTextField jFTFSaldo;
@@ -484,13 +442,10 @@ private void llenarCTipoC(){
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFIdCuenta;
-    private javax.swing.JTextField jTFMonto;
     private javax.swing.JTable jTblCuenta;
     // End of variables declaration//GEN-END:variables
 }
