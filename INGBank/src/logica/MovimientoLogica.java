@@ -11,7 +11,19 @@ package logica;
  */
 public class MovimientoLogica {
     private int IdMovimiento;
-    private String Movimiento;
+    private int IdTipoMovimiento;
+    private String Fecha_Movimiento;
+    private int IdCuentaT;
+    private int IdCuentaR;
+    private double Monto;
+
+    public double getMonto() {
+        return Monto;
+    }
+
+    public void setMonto(double Monto) {
+        this.Monto = Monto;
+    }
 
     public int getIdMovimiento() {
         return IdMovimiento;
@@ -21,12 +33,38 @@ public class MovimientoLogica {
         this.IdMovimiento = IdMovimiento;
     }
 
-    public String getMovimiento() {
-        return Movimiento;
+    public int getIdTipoMovimiento() {
+        return IdTipoMovimiento;
     }
 
-    public void setMovimiento(String Movimiento) {
-        this.Movimiento = Movimiento;
+    public void setIdTipoMovimiento(int IdTipoMovimiento) {
+        this.IdTipoMovimiento = IdTipoMovimiento;
     }
+
+    public String getFecha_Movimiento() {
+        return Fecha_Movimiento;
+    }
+
+    public void setFecha_Movimiento(String Fecha_Movimiento) {
+        this.Fecha_Movimiento = Fecha_Movimiento;
+    }
+
+    public int getIdCuentaT() {
+        return IdCuentaT;
+    }
+
+    public void setIdCuentaT(int IdCuentaT) {
+        this.IdCuentaT = IdCuentaT;
+    }
+
+    public int getIdCuentaR() {
+        return IdCuentaR;
+    }
+
+    public void setIdCuentaR(int IdCuentaR) {
+        this.IdCuentaR = IdCuentaR;
+    }
+
+    
     
 }

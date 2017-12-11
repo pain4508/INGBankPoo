@@ -5,7 +5,6 @@
  */
 package presentacion;
 
-
 import dao.ClienteDao;
 import dao.CuentaDao;
 import dao.MovimientoDao;
@@ -36,7 +35,7 @@ public class JIFraCuenta
         initComponents();
         llenarCC();
         llenarCTipoC();
-        habilitarBotones(true,false,false,false,false);
+        habilitarBotones(true, false, false, false, false);
     }
 
     /**
@@ -261,35 +260,36 @@ public class JIFraCuenta
         pack();
     }// </editor-fold>//GEN-END:initComponents
   private void limpiar() {
-       jTFIdCuenta.setText("");
-       jFTFFechaC.setText("");
-       jFTFSaldo.setText("");   
+        jTFIdCuenta.setText("");
+        jFTFFechaC.setText("");
+        jFTFSaldo.setText("");
     }
-    
-    private void guardarCuenta(){
-        
+
+    private void guardarCuenta() {
+
         CuentaLogica c1 = new CuentaLogica();
-        
+
         c1.setIdCuenta(Integer.parseInt(this.jTFIdCuenta.getText()));
         c1.setIdCliente(this.jCboCliente.getSelectedIndex() + 1);
         c1.setIdTipoCuenta(this.jCboTipoc.getSelectedIndex() + 1);
         c1.setSaldo(Double.parseDouble(this.jFTFSaldo.getText()));
-        c1.setFecha_de_Creacion(this.jFTFFechaC.getText());         
-             
+        c1.setFecha_de_Creacion(this.jFTFFechaC.getText());
+
         try {
             CuentaDao dao = new CuentaDao();
             dao.insertarCuenta(c1);
             JOptionPane.showMessageDialog(null, "Registro almacenado satisfactoriamente.");
             limpiar();
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al almacenar la Cuenta." + e);
         }
     }
-     private void modificarCuenta(){
-    CuentaLogica c1 = new CuentaLogica();
-    
-       
+
+    private void modificarCuenta() {
+        CuentaLogica c1 = new CuentaLogica();
+
+        c1.setIdCuenta(Integer.parseInt(this.jTFIdCuenta.getText()));
         c1.setIdCliente(this.jCboCliente.getSelectedIndex() + 1);
         c1.setIdTipoCuenta(this.jCboTipoc.getSelectedIndex() + 1);
         c1.setFecha_de_Creacion(this.jFTFFechaC.getText());
@@ -297,117 +297,122 @@ public class JIFraCuenta
         try {
             CuentaDao dao = new CuentaDao();
             dao.modificarCuenta(c1);
-            JOptionPane.showMessageDialog(null,"Registro modificado satisfactoriamente");
+            JOptionPane.showMessageDialog(null, "Registro modificado satisfactoriamente");
             limpiar();
-            
+
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Error al modificar Cliente" + e );
+            JOptionPane.showMessageDialog(null, "Error al modificar Cliente" + e);
         }
     }
-      private void eliminarCuenta(){
-   CuentaLogica c1 = new CuentaLogica();
-    
-             c1.setIdCuenta(Integer.parseInt(this.jTFIdCuenta.getText()));
-        
+
+    private void eliminarCuenta() {
+        CuentaLogica c1 = new CuentaLogica();
+
+        c1.setIdCuenta(Integer.parseInt(this.jTFIdCuenta.getText()));
+
         try {
             CuentaDao dao = new CuentaDao();
             dao.eliminarCuenta(c1);
-            JOptionPane.showMessageDialog(null,"Registro eliminado satisfactoriamente");
+            JOptionPane.showMessageDialog(null, "Registro eliminado satisfactoriamente");
             limpiar();
-            
+
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Error al eliminar Cliente" + e );
+            JOptionPane.showMessageDialog(null, "Error al eliminar Cliente" + e);
         }
-   }    
-   private void limpiarTabla(){
-      
+    }
+
+    private void limpiarTabla() {
+
         DefaultTableModel temp = (DefaultTableModel) this.jTblCuenta.getModel(); //
-        
+
         // Limpiar los datos de la tabla.
         while (temp.getRowCount() > 0) {
             temp.removeRow(0);
-     }
+        }
     }
- private void llenarTCuenta() throws SQLException{
-     limpiarTabla();
-        
+
+    private void llenarTCuenta() throws SQLException {
+        limpiarTabla();
+
         CuentaDao dao = new CuentaDao();
         List<CuentaLogica> miLista = dao.getLista();
-        
-        DefaultTableModel temp = (DefaultTableModel) this.jTblCuenta.getModel(); 
-        
-        for(CuentaLogica c1:miLista){
-          
+
+        DefaultTableModel temp = (DefaultTableModel) this.jTblCuenta.getModel();
+
+        for (CuentaLogica c1 : miLista) {
+
             Object[] fila = new Object[5];
-           
-            
-                fila[0] = c1.getIdCuenta();
-                fila[1] = c1.getIdCliente();
-                fila[2] = c1.getIdTipoCuenta();
-                fila[3] = c1.getSaldo();
-                fila[4] = c1.getFecha_de_Creacion();
-                temp.addRow(fila);
-               
-        } 
-}
 
- private void llenarCC(){
-       try{
-        TipoCuentaDao dao = new TipoCuentaDao();   
-        jCboCliente.removeAllItems();
+            fila[0] = c1.getIdCuenta();
+            fila[1] = c1.getIdCliente();
+            fila[2] = c1.getIdTipoCuenta();
+            fila[3] = c1.getSaldo();
+            fila[4] = c1.getFecha_de_Creacion();
+            temp.addRow(fila);
 
-        List<ClienteLogica> miComboCliente;
-
-        miComboCliente = dao.getComboCliente();
-
-        for(int i=0; i<miComboCliente.size();i++){
-
-            jCboCliente.addItem(miComboCliente.get(i).getNombres());
         }
-        
-        
-    }catch(SQLException e){
-        JOptionPane.showMessageDialog(null, e);
     }
-    
-}
-private void llenarCTipoC(){
-         try{
-        TipoCuentaDao dao = new TipoCuentaDao();   
-        jCboTipoc.removeAllItems();
 
-        List<TipoCuentaLogica> miComboTipoCuenta;
+    private void llenarCC() {
+        try {
+            TipoCuentaDao dao = new TipoCuentaDao();
+            jCboCliente.removeAllItems();
 
-        miComboTipoCuenta = dao.getComboTipoC();
+            List<ClienteLogica> miComboCliente;
 
-        for(int i=0; i<miComboTipoCuenta.size();i++){
+            miComboCliente = dao.getComboCliente();
 
-            jCboTipoc.addItem(miComboTipoCuenta.get(i).getTipoCuenta());
+            for (int i = 0; i < miComboCliente.size(); i++) {
+
+                jCboCliente.addItem(miComboCliente.get(i).getNombres());
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        
-        
-    }catch(SQLException e){
-        JOptionPane.showMessageDialog(null, e);
+
     }
-}         private void investigarCorrelativo() throws SQLException{
+
+    private void llenarCTipoC() {
+        try {
+            TipoCuentaDao dao = new TipoCuentaDao();
+            jCboTipoc.removeAllItems();
+
+            List<TipoCuentaLogica> miComboTipoCuenta;
+
+            miComboTipoCuenta = dao.getComboTipoC();
+
+            for (int i = 0; i < miComboTipoCuenta.size(); i++) {
+
+                jCboTipoc.addItem(miComboTipoCuenta.get(i).getTipoCuenta());
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
+    private void investigarCorrelativo() throws SQLException {
         CuentaDao dao = new CuentaDao();
         CuentaLogica c1 = new CuentaLogica();
         c1.setIdCuenta(dao.autoIncrementar());
         jTFIdCuenta.setText(String.valueOf(c1.getIdCuenta()));
-        
+
     }
-    private boolean verificarTextField(){
+
+    private boolean verificarTextField() {
         boolean estado;
-        
-        if(jTFIdCuenta.getText().isEmpty()  || jFTFFechaC.getText().isEmpty() || jFTFSaldo.getText().isEmpty()){
+
+        if (jTFIdCuenta.getText().isEmpty() || jFTFFechaC.getText().isEmpty() || jFTFSaldo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese los campos vacios");
-            estado = false;    
-        }else{
+            estado = false;
+        } else {
             estado = true;
         }
         return estado;
     }
-         private void habilitarBotones(boolean nuevo, boolean guardar, boolean modificar, boolean eliminar, boolean textField){
+
+    private void habilitarBotones(boolean nuevo, boolean guardar, boolean modificar, boolean eliminar, boolean textField) {
         jTFIdCuenta.setEnabled(nuevo);
         jBtnGuardar.setEnabled(guardar);
         jBtnModificar.setEnabled(modificar);
@@ -417,93 +422,92 @@ private void llenarCTipoC(){
         jCboTipoc.setEditable(textField);
         jFTFFechaC.setEditable(textField);
         jFTFSaldo.setEditable(textField);
-       
-        
-    }  
-       private void lineaSeleccionada() {
-         
+
+    }
+
+    private void lineaSeleccionada() {
+
         if (this.jTblCuenta.getSelectedRow() != -1) {
             //Habilito los controles para que se pueda hacer una accion.
             if (this.jTblCuenta.isEnabled() == true) {
                 this.jTFIdCuenta.setText(String.valueOf(this.jTblCuenta.getValueAt(jTblCuenta.getSelectedRow(), 0)));
                 this.jFTFSaldo.setText(String.valueOf(this.jTblCuenta.getValueAt(jTblCuenta.getSelectedRow(), 3)));
                 this.jFTFFechaC.setText(String.valueOf(this.jTblCuenta.getValueAt(jTblCuenta.getSelectedRow(), 4)));
-                
+
             }
         } else {
             limpiar();
         }
     }
-     
+
     private void jBtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarActionPerformed
-            if(verificarTextField()==true){
+        if (verificarTextField() == true) {
             guardarCuenta();
-            habilitarBotones(true, false, false, false, false); 
+            habilitarBotones(true, false, false, false, false);
             try {
                 llenarTCuenta();
             } catch (SQLException ex) {
                 Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
-          
+
         }
     }//GEN-LAST:event_jBtnGuardarActionPerformed
 
     private void jBtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNuevoActionPerformed
-          limpiar();
+        limpiar();
         habilitarBotones(false, true, false, false, true);
-       
+
         try {
             investigarCorrelativo();
         } catch (SQLException ex) {
             Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-             habilitarBotones(false, true, false, false, true);
+        habilitarBotones(false, true, false, false, true);
     }//GEN-LAST:event_jBtnNuevoActionPerformed
 
     private void jTblCuentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblCuentaMousePressed
-       lineaSeleccionada();
+        lineaSeleccionada();
         habilitarBotones(false, false, true, true, false);
     }//GEN-LAST:event_jTblCuentaMousePressed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-         try {
+        try {
             llenarTCuenta();
-          DefaultTableModel temp = (DefaultTableModel) this.jTblCuenta.getModel();
-           temp.fireTableDataChanged();
+            DefaultTableModel temp = (DefaultTableModel) this.jTblCuenta.getModel();
+            temp.fireTableDataChanged();
         } catch (SQLException ex) {
             Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formComponentShown
 
     private void jBtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnModificarActionPerformed
-           modificarCuenta();
+        modificarCuenta();
         try {
             llenarTCuenta();
         } catch (SQLException ex) {
             Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-         habilitarBotones(true, false, false, false, false);
-     
+        habilitarBotones(true, false, false, false, false);
+
     }//GEN-LAST:event_jBtnModificarActionPerformed
 
     private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
-      
+
         if (JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar el registro?", "Advertencia",
-        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-         eliminarCuenta();
-          try {
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            eliminarCuenta();
+            try {
                 llenarTCuenta();
             } catch (SQLException ex) {
                 Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
             habilitarBotones(true, false, false, false, false);
-       
-            } else {
-   
+
+        } else {
+
         }
     }//GEN-LAST:event_jBtnEliminarActionPerformed
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnEliminar;

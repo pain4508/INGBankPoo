@@ -14,6 +14,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import logica.CuentaLogica;
 import logica.NacionalidadLogica;
+import logica.MovimientoLogica;
+import dao.MovimientoDao;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,6 +30,8 @@ public class JIFraTransfer extends javax.swing.JFrame {
     public JIFraTransfer() {
         initComponents();
         llenarCboCuenta();
+        llenarTMovimiento();
+        
     }
 
     /**
@@ -51,7 +56,7 @@ public class JIFraTransfer extends javax.swing.JFrame {
         jRBDeposito = new javax.swing.JRadioButton();
         jRBTransferencia = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTblMovimiento = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -80,15 +85,15 @@ public class JIFraTransfer extends javax.swing.JFrame {
         buttonGroup1.add(jRBTransferencia);
         jRBTransferencia.setText("Transferencia");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTblMovimiento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Cuenta debito", "Monto", "Cuenta credito"
+                "IdMovimiento", "IdTipoMovimiento", "Fecha_Movimiento", "IdCuentaT", "IdCuentaR", "Monto"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTblMovimiento);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 2, 18)); // NOI18N
         jLabel4.setText("MOVIMIENTO");
@@ -98,45 +103,44 @@ public class JIFraTransfer extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jBtnConfirmar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTFMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(159, 159, 159))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCboIdCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addGap(224, 224, 224))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTFMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jCboIdCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addGap(14, 14, 14)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jBtnConfirmar)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel2)
-                                            .addGap(122, 122, 122))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jRBRetiro)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRBDeposito)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRBTransferencia))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCboIdCuentaD, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(jRBRetiro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRBDeposito)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRBTransferencia))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCboIdCuentaD, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(87, 87, 87))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(268, 268, 268))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +168,7 @@ public class JIFraTransfer extends javax.swing.JFrame {
                             .addComponent(jLabel3))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBtnConfirmar)
-                .addGap(68, 68, 68)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -185,27 +189,45 @@ public class JIFraTransfer extends javax.swing.JFrame {
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-        
+
         try {
             CuentaDao dao = new CuentaDao();
             CuentaLogica c1 = new CuentaLogica();
+            MovimientoLogica m1 = new MovimientoLogica();
+            MovimientoDao daom = new MovimientoDao();
+            
             c1.setIdCuenta(Integer.parseInt(jCboIdCuenta.getSelectedItem().toString()));
-            if(jRBDeposito.isSelected()){
+            if (jRBDeposito.isSelected()) {
                 dao.depositarSaldo(c1, Double.parseDouble(jTFMonto.getText()));
+                m1.setIdCuentaT(c1.getIdCuenta());
+                m1.setIdTipoMovimiento(2);
+                m1.setMonto(Double.parseDouble(jTFMonto.getText()));
+                daom.insertarMovimiento(m1);
+                
             }
-            if(jRBRetiro.isSelected()){
+            if (jRBRetiro.isSelected()) {
                 dao.retirarSaldo(c1, Double.parseDouble(jTFMonto.getText()));
+                m1.setIdCuentaT(c1.getIdCuenta());
+                m1.setIdTipoMovimiento(1);
+                m1.setMonto(Double.parseDouble(jTFMonto.getText()));
+                daom.insertarMovimiento(m1);
             }
-            if(jRBTransferencia.isSelected()){
+            if (jRBTransferencia.isSelected()) {
                 CuentaLogica c2 = new CuentaLogica();
                 c2.setIdCuenta(Integer.parseInt(jCboIdCuentaD.getSelectedItem().toString()));
                 dao.retirarSaldo(c1, Double.parseDouble(jTFMonto.getText()));
                 dao.depositarSaldo(c2, Double.parseDouble(jTFMonto.getText()));
+                m1.setIdCuentaT(c1.getIdCuenta());
+                m1.setIdCuentaR(c2.getIdCuenta());
+                m1.setIdTipoMovimiento(3);
+                m1.setMonto(Double.parseDouble(jTFMonto.getText()));
+                daom.insertarMovimiento(m1);
             }
+            llenarTMovimiento();
         } catch (SQLException ex) {
             
         }
-        
+
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     /**
@@ -242,28 +264,66 @@ public class JIFraTransfer extends javax.swing.JFrame {
             }
         });
     }
-    private void llenarCboCuenta(){
-       try{
-        CuentaDao dao = new CuentaDao();   
-        jCboIdCuenta.removeAllItems();
-
-        List<CuentaLogica> miComboCuenta;
-
-        miComboCuenta = dao.getLista();
-
-        for(int i=0; i<miComboCuenta.size();i++){
-
-            jCboIdCuenta.addItem(String.valueOf(miComboCuenta.get(i).getIdCuenta()));
-            jCboIdCuentaD.addItem(String.valueOf(miComboCuenta.get(i).getIdCuenta()));
+    
+    private void llenarCboCuenta() {
+        try {
+            CuentaDao dao = new CuentaDao();
+            jCboIdCuenta.removeAllItems();
             
+            List<CuentaLogica> miComboCuenta;
+            
+            miComboCuenta = dao.getLista();
+            
+            for (int i = 0; i < miComboCuenta.size(); i++) {
+                
+                jCboIdCuenta.addItem(String.valueOf(miComboCuenta.get(i).getIdCuenta()));
+                jCboIdCuentaD.addItem(String.valueOf(miComboCuenta.get(i).getIdCuenta()));
+                
+            }
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
         
-        
-    }catch(SQLException e){
-        JOptionPane.showMessageDialog(null, e);
     }
     
-}
+    private void llenarTMovimiento() {
+        try {
+            limpiarTabla();
+            
+            MovimientoDao dao = new MovimientoDao();
+            List<MovimientoLogica> miLista = dao.getLista();
+            
+            DefaultTableModel temp = (DefaultTableModel) this.jTblMovimiento.getModel();
+            
+            for (MovimientoLogica m1 : miLista) {
+                
+                Object[] fila = new Object[6];
+                
+                fila[0] = m1.getIdMovimiento();
+                fila[1] = m1.getIdTipoMovimiento();
+                fila[2] = m1.getFecha_Movimiento();
+                fila[3] = m1.getIdCuentaT();
+                fila[4] = m1.getIdCuentaR();
+                fila[5] = m1.getMonto();
+                temp.addRow(fila);
+                
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+    }
+
+    private void limpiarTabla() {
+        
+        DefaultTableModel temp = (DefaultTableModel) this.jTblMovimiento.getModel(); //
+
+        // Limpiar los datos de la tabla.
+        while (temp.getRowCount() > 0) {
+            temp.removeRow(0);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -280,6 +340,6 @@ public class JIFraTransfer extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRBTransferencia;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFMonto;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTblMovimiento;
     // End of variables declaration//GEN-END:variables
 }

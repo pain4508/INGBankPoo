@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import logica.ClienteLogica;
 import logica.CuentaLogica;
 
@@ -55,6 +56,9 @@ public class CuentaDao {
            st.setString(4, c1.getFecha_de_Creacion());
            st.setInt(5, c1.getIdCuenta());
            st.executeUpdate();
+   }catch(SQLException e)
+   {
+       JOptionPane.showMessageDialog(null, e);
    }
 }
  public void eliminarCuenta(CuentaLogica c1) throws SQLException{
