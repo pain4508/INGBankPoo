@@ -39,7 +39,7 @@ public class CuentaDao {
             st.setInt(3, c1.getIdTipoCuenta());
             st.setDouble(4, c1.getSaldo());
             st.setString(5, c1.getFecha_de_Creacion());
-            st.setInt(6, c1.getIdMovimiento());
+            st.setInt(6, c1.getIdUsuario());
             st.execute();
        } 
    }  
@@ -60,7 +60,7 @@ public class CuentaDao {
               c1.setIdTipoCuenta(rs.getInt("IdTipoCuenta"));
               c1.setSaldo(rs.getDouble("Saldo"));
               c1.setFecha_de_Creacion(rs.getString("Fecha_de_Creacion"));
-              c1.setIdMovimiento(rs.getInt("IdMovimiento"));
+              c1.setIdMovimiento(rs.getInt("IdUsuario"));
                   
               miLista.add(c1);
               
@@ -83,5 +83,31 @@ public class CuentaDao {
             cuentaId = 1;
         }
         return cuentaId;
+    }
+      public void retirarSaldo(CuentaLogica c1, double monto) throws SQLException{
+        
+        String sql="UPDATE Cuenta SET Saldo = Saldo - ? "
+                    + "WHERE IdCuenta=?";
+       
+       try (PreparedStatement st =(PreparedStatement) cnc.prepareStatement(sql)){
+             
+           st.setDouble(1, monto);
+           st.setInt(2, c1.getIdCuenta());
+           st.executeUpdate();
+           
+       }
+    }
+      public void depositarSaldo(CuentaLogica c1, double monto) throws SQLException{
+        
+        String sql="UPDATE Cuenta SET Saldo = Saldo + ? "
+                    + "WHERE IdCuenta=?";
+       
+       try (PreparedStatement st =(PreparedStatement) cnc.prepareStatement(sql)){
+             
+           st.setDouble(1, monto);
+           st.setInt(2, c1.getIdCuenta());
+           st.executeUpdate();
+           
+       }
     }
 }
