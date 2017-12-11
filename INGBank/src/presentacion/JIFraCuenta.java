@@ -65,11 +65,16 @@ public class JIFraCuenta
         jBtnGuardar = new javax.swing.JButton();
         jBtnModificar = new javax.swing.JButton();
         jBtnEliminar = new javax.swing.JButton();
-        jFTFFechaC = new javax.swing.JFormattedTextField();
         jFTFSaldo = new javax.swing.JFormattedTextField();
+        jFTFFechaC = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setIconifiable(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -115,17 +120,12 @@ public class JIFraCuenta
 
             },
             new String [] {
-                "Numero Cuenta", "Cliente", "Tipo Cuenta", "Fecha de Creacion", "Saldo Inicial"
+                "Numero Cuenta", "Cliente", "Tipo Cuenta", "Saldo Inicial", "Fecha de Creacion"
             }
         ));
         jTblCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jTblCuentaMousePressed(evt);
-            }
-        });
-        jTblCuenta.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                jTblCuentaComponentShown(evt);
             }
         });
         jScrollPane1.setViewportView(jTblCuenta);
@@ -145,16 +145,26 @@ public class JIFraCuenta
         });
 
         jBtnModificar.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/edit.png")); // NOI18N
+        jBtnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnModificarActionPerformed(evt);
+            }
+        });
 
         jBtnEliminar.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/delete.png")); // NOI18N
+        jBtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEliminarActionPerformed(evt);
+            }
+        });
+
+        jFTFSaldo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
         try {
-            jFTFFechaC.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+            jFTFFechaC.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-
-        jFTFSaldo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -194,8 +204,8 @@ public class JIFraCuenta
                                     .addComponent(jLabel4))
                                 .addGap(24, 24, 24)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jFTFSaldo)
-                                    .addComponent(jFTFFechaC, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))))
+                                    .addComponent(jFTFSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                                    .addComponent(jFTFFechaC))))
                         .addGap(0, 143, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
@@ -263,10 +273,7 @@ public class JIFraCuenta
         c1.setIdCliente(this.jCboCliente.getSelectedIndex() + 1);
         c1.setIdTipoCuenta(this.jCboTipoc.getSelectedIndex() + 1);
         c1.setSaldo(Double.parseDouble(this.jFTFSaldo.getText()));
-        c1.setFecha_de_Creacion(this.jFTFFechaC.getText());
-        c1.setIdTipoCuenta(this.jCboTipoc.getSelectedIndex() + 1);
-     
-         
+        c1.setFecha_de_Creacion(this.jFTFFechaC.getText());         
              
         try {
             CuentaDao dao = new CuentaDao();
@@ -278,9 +285,50 @@ public class JIFraCuenta
             JOptionPane.showMessageDialog(null, "Error al almacenar la Cuenta." + e);
         }
     }
-
+     private void modificarCuenta(){
+    CuentaLogica c1 = new CuentaLogica();
+    
+       
+        c1.setIdCliente(this.jCboCliente.getSelectedIndex() + 1);
+        c1.setIdTipoCuenta(this.jCboTipoc.getSelectedIndex() + 1);
+        c1.setFecha_de_Creacion(this.jFTFFechaC.getText());
+        c1.setSaldo(Double.parseDouble(this.jFTFSaldo.getText()));
+        try {
+            CuentaDao dao = new CuentaDao();
+            dao.modificarCuenta(c1);
+            JOptionPane.showMessageDialog(null,"Registro modificado satisfactoriamente");
+            limpiar();
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error al modificar Cliente" + e );
+        }
+    }
+      private void eliminarCuenta(){
+   CuentaLogica c1 = new CuentaLogica();
+    
+             c1.setIdCuenta(Integer.parseInt(this.jTFIdCuenta.getText()));
+        
+        try {
+            CuentaDao dao = new CuentaDao();
+            dao.eliminarCuenta(c1);
+            JOptionPane.showMessageDialog(null,"Registro eliminado satisfactoriamente");
+            limpiar();
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error al eliminar Cliente" + e );
+        }
+   }    
+   private void limpiarTabla(){
+      
+        DefaultTableModel temp = (DefaultTableModel) this.jTblCuenta.getModel(); //
+        
+        // Limpiar los datos de la tabla.
+        while (temp.getRowCount() > 0) {
+            temp.removeRow(0);
+     }
+    }
  private void llenarTCuenta() throws SQLException{
-    //limpiarTabla();
+     limpiarTabla();
         
         CuentaDao dao = new CuentaDao();
         List<CuentaLogica> miLista = dao.getLista();
@@ -340,17 +388,7 @@ private void llenarCTipoC(){
     }catch(SQLException e){
         JOptionPane.showMessageDialog(null, e);
     }
-} 
-    private void jTblCuentaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTblCuentaComponentShown
-          try {
-            llenarTCuenta();
-          DefaultTableModel temp = (DefaultTableModel) this.jTblCuenta.getModel();
-           temp.fireTableDataChanged();
-        } catch (SQLException ex) {
-            Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jTblCuentaComponentShown
-        private void investigarCorrelativo() throws SQLException{
+}         private void investigarCorrelativo() throws SQLException{
         CuentaDao dao = new CuentaDao();
         CuentaLogica c1 = new CuentaLogica();
         c1.setIdCuenta(dao.autoIncrementar());
@@ -424,6 +462,44 @@ private void llenarCTipoC(){
        lineaSeleccionada();
         habilitarBotones(false, false, true, true, true);
     }//GEN-LAST:event_jTblCuentaMousePressed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+         try {
+            llenarTCuenta();
+          DefaultTableModel temp = (DefaultTableModel) this.jTblCuenta.getModel();
+           temp.fireTableDataChanged();
+        } catch (SQLException ex) {
+            Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formComponentShown
+
+    private void jBtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnModificarActionPerformed
+           modificarCuenta();
+        try {
+            llenarTCuenta();
+        } catch (SQLException ex) {
+            Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         habilitarBotones(true, false, false, false, false);
+     
+    }//GEN-LAST:event_jBtnModificarActionPerformed
+
+    private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
+      
+        if (JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar el registro?", "Advertencia",
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+         eliminarCuenta();
+          try {
+                llenarTCuenta();
+            } catch (SQLException ex) {
+                Logger.getLogger(JIFraCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            habilitarBotones(true, false, false, false, false);
+       
+            } else {
+   
+        }
+    }//GEN-LAST:event_jBtnEliminarActionPerformed
 
   
 

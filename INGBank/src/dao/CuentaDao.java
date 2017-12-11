@@ -30,8 +30,8 @@ public class CuentaDao {
     }
  public void insertarCuenta(CuentaLogica c1) throws SQLException{
        //Preparar la consulta 
-       String sql= "Insert into Cuenta(IdCuenta,IdTipoCuenta,Saldo,Fecha_de_Creacion) "
-                +"Values(?,?,?,?,?,?,?) ";
+       String sql= "Insert into Cuenta(IdCuenta,IdCliente,IdTipoCuenta,Saldo,Fecha_de_Creacion) "
+                +"Values(?,?,?,?,?) ";
        try (PreparedStatement st =(PreparedStatement) cnc.prepareStatement(sql)){
            
             st.setInt(1, c1.getIdCuenta());
@@ -42,6 +42,32 @@ public class CuentaDao {
             st.execute();
        } 
    }  
+ public void modificarCuenta(CuentaLogica c1) throws SQLException{
+       //Preparar la consulta 
+       String sql="UPDATE Cuenta SET IdCliente=?, IdTipoCuenta=?, Saldo=?, Fecha_de_Creacion=? "
+                    + "WHERE IdCuenta=?";
+       
+       try (PreparedStatement st =(PreparedStatement) cnc.prepareStatement(sql)){
+             
+           st.setInt(1, c1.getIdCliente());
+           st.setInt(2, c1.getIdTipoCuenta());
+           st.setDouble(3, c1.getSaldo());
+           st.setString(4, c1.getFecha_de_Creacion());
+           st.setInt(5, c1.getIdCuenta());
+           st.executeUpdate();
+   }
+}
+ public void eliminarCuenta(CuentaLogica c1) throws SQLException{
+       //Preparar la consulta 
+       String sql="Delete "
+                +"From Cuenta "
+                +"Where IdCuenta = ? ";
+       
+       try (PreparedStatement st = cnc.prepareStatement(sql)){
+            st.setInt(1, c1.getIdCuenta());
+            st.execute();
+       } 
+   } 
    public List<CuentaLogica>getLista() throws SQLException{
      
       String sql = "Select * from Cuenta";

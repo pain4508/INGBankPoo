@@ -727,7 +727,7 @@ private void llenarCbN(){
             habilitarBotones(true, false, false, false, false);
        
             } else {
-    // no option
+   
         }   
     }//GEN-LAST:event_jBtnEliminar2ActionPerformed
 
