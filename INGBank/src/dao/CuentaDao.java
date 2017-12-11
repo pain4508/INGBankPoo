@@ -39,10 +39,6 @@ public class CuentaDao {
             st.setInt(3, c1.getIdTipoCuenta());
             st.setDouble(4, c1.getSaldo());
             st.setString(5, c1.getFecha_de_Creacion());
-<<<<<<< HEAD
-=======
-            st.setInt(6, c1.getIdUsuario());
->>>>>>> a40aba006e00b63668c55bf4b8bb4830698de2ff
             st.execute();
        } 
    }  
@@ -63,11 +59,6 @@ public class CuentaDao {
               c1.setIdTipoCuenta(rs.getInt("IdTipoCuenta"));
               c1.setSaldo(rs.getDouble("Saldo"));
               c1.setFecha_de_Creacion(rs.getString("Fecha_de_Creacion"));
-<<<<<<< HEAD
-=======
-              c1.setIdMovimiento(rs.getInt("IdUsuario"));
->>>>>>> a40aba006e00b63668c55bf4b8bb4830698de2ff
-                  
               miLista.add(c1);
               
           }
