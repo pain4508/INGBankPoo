@@ -421,6 +421,7 @@ private void llenarCTipoC(){
         
     }  
        private void lineaSeleccionada() {
+         
         if (this.jTblCuenta.getSelectedRow() != -1) {
             //Habilito los controles para que se pueda hacer una accion.
             if (this.jTblCuenta.isEnabled() == true) {
@@ -461,7 +462,7 @@ private void llenarCTipoC(){
 
     private void jTblCuentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblCuentaMousePressed
        lineaSeleccionada();
-        habilitarBotones(false, false, true, true, true);
+        habilitarBotones(false, false, true, true, false);
     }//GEN-LAST:event_jTblCuentaMousePressed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
