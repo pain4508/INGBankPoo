@@ -39,10 +39,9 @@ public class JIFraLogin
         jPFContrasena = new javax.swing.JPasswordField();
         JBtnAcceder = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(153, 204, 255));
         setClosable(true);
         setIconifiable(true);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/login.png")); // NOI18N
 
         jLabel2.setText("Usuario:");
 
@@ -96,7 +95,7 @@ public class JIFraLogin
                         .addGap(30, 30, 30)
                         .addComponent(JBtnAcceder, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
