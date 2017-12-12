@@ -57,11 +57,6 @@ public class JFraMdi extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -158,17 +153,6 @@ public class JFraMdi extends javax.swing.JFrame {
         cta.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
         cta.show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-      
-        JIFraLogin lg = new JIFraLogin();
-        this.jDesktopPane1.add(lg);
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = lg.getSize();
-        lg.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-        lg.show();
-        
-    }//GEN-LAST:event_formComponentShown
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         JIFraTransfer mov = new JIFraTransfer();
