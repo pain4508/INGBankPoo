@@ -29,6 +29,8 @@ public class JIFraTransfer extends javax.swing.JFrame {
      */
     public JIFraTransfer() {
         initComponents();
+        jLblCuenta.setVisible(false);
+        jCboIdCuentaD.setVisible(false);
         llenarCboCuenta();
         llenarTMovimiento();
         
@@ -51,7 +53,7 @@ public class JIFraTransfer extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jCboIdCuenta = new javax.swing.JComboBox<>();
         jCboIdCuentaD = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
+        jLblCuenta = new javax.swing.JLabel();
         jRBRetiro = new javax.swing.JRadioButton();
         jRBDeposito = new javax.swing.JRadioButton();
         jRBTransferencia = new javax.swing.JRadioButton();
@@ -74,7 +76,7 @@ public class JIFraTransfer extends javax.swing.JFrame {
 
         jLabel2.setText("Monto");
 
-        jLabel3.setText("Cuenta Destino");
+        jLblCuenta.setText("Cuenta Destino");
 
         buttonGroup1.add(jRBRetiro);
         jRBRetiro.setText("Retiro");
@@ -84,6 +86,11 @@ public class JIFraTransfer extends javax.swing.JFrame {
 
         buttonGroup1.add(jRBTransferencia);
         jRBTransferencia.setText("Transferencia");
+        jRBTransferencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBTransferenciaActionPerformed(evt);
+            }
+        });
 
         jTblMovimiento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -129,7 +136,7 @@ public class JIFraTransfer extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRBTransferencia))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(jLblCuenta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCboIdCuentaD, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(87, 87, 87))
@@ -165,7 +172,7 @@ public class JIFraTransfer extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCboIdCuentaD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))))
+                            .addComponent(jLblCuenta))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBtnConfirmar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -229,6 +236,17 @@ public class JIFraTransfer extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
+
+    private void jRBTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBTransferenciaActionPerformed
+        // TODO add your handling code here:
+        if(jLblCuenta.isVisible()){
+            jLblCuenta.setVisible(false);
+            jCboIdCuentaD.setVisible(false);
+        }else{
+            jLblCuenta.setVisible(true);
+            jCboIdCuentaD.setVisible(true);
+        }
+    }//GEN-LAST:event_jRBTransferenciaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,8 +350,8 @@ public class JIFraTransfer extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jCboIdCuentaD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLblCuenta;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRBDeposito;
     private javax.swing.JRadioButton jRBRetiro;
