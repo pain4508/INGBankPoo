@@ -31,9 +31,9 @@ public class JIFraTransfer extends javax.swing.JFrame {
         initComponents();
         jLblCuenta.setVisible(false);
         jCboIdCuentaD.setVisible(false);
-        llenarCboCuenta();
+        llenarCboCuentaT();
         llenarTMovimiento();
-        
+
     }
 
     /**
@@ -79,13 +79,29 @@ public class JIFraTransfer extends javax.swing.JFrame {
 
         jLabel2.setText("Monto");
 
+        jCboIdCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCboIdCuentaActionPerformed(evt);
+            }
+        });
+
         jLblCuenta.setText("Cuenta Destino");
 
         buttonGroup1.add(jRBRetiro);
         jRBRetiro.setText("Retiro");
+        jRBRetiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBRetiroActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRBDeposito);
         jRBDeposito.setText("Deposito");
+        jRBDeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBDepositoActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRBTransferencia);
         jRBTransferencia.setText("Transferencia");
@@ -203,64 +219,97 @@ public class JIFraTransfer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-      if(jRBRetiro.isSelected()==false && jRBDeposito.isSelected()==false && jRBTransferencia.isSelected()==false || jTFMonto.getText().isEmpty()==true){
-          JOptionPane.showMessageDialog(null,"Favor seleccione el tipo de movimiento y el monto");    
-      }else{
+        if (jRBRetiro.isSelected() == false && jRBDeposito.isSelected() == false && jRBTransferencia.isSelected() == false || jTFMonto.getText().isEmpty() == true) {
+            JOptionPane.showMessageDialog(null, "Favor seleccione el tipo de movimiento y el monto");
+        } else {
 
-        try {
-            CuentaDao dao = new CuentaDao();
-            CuentaLogica c1 = new CuentaLogica();
-            MovimientoLogica m1 = new MovimientoLogica();
-            MovimientoDao daom = new MovimientoDao();
-            
-            c1.setIdCuenta(Integer.parseInt(jCboIdCuenta.getSelectedItem().toString()));
-            if (jRBDeposito.isSelected()) {
-                dao.depositarSaldo(c1, Double.parseDouble(jTFMonto.getText()));
-                m1.setIdCuentaT(c1.getIdCuenta());
-                m1.setIdTipoMovimiento(2);
-                m1.setMonto(Double.parseDouble(jTFMonto.getText()));
-                daom.insertarMovimiento(m1);
-                
+            try {
+                CuentaDao dao = new CuentaDao();
+                CuentaLogica c1 = new CuentaLogica();
+                MovimientoLogica m1 = new MovimientoLogica();
+                MovimientoDao daom = new MovimientoDao();
+
+                c1.setIdCuenta(Integer.parseInt(jCboIdCuenta.getSelectedItem().toString()));
+                if (jRBDeposito.isSelected()) {
+                    dao.depositarSaldo(c1, Double.parseDouble(jTFMonto.getText()));
+                    m1.setIdCuentaT(c1.getIdCuenta());
+                    m1.setIdTipoMovimiento(2);
+                    m1.setMonto(Double.parseDouble(jTFMonto.getText()));
+                    daom.insertarMovimiento(m1);
+
+                }
+                if (jRBRetiro.isSelected()) {
+                    if (dao.getSaldo(Integer.parseInt(jCboIdCuenta.getSelectedItem().toString())) < Double.parseDouble(jTFMonto.getText())) {
+                        JOptionPane.showMessageDialog(null, "Fondos insuficientes");
+                    } else {
+                        dao.retirarSaldo(c1, Double.parseDouble(jTFMonto.getText()));
+                        m1.setIdCuentaT(c1.getIdCuenta());
+                        m1.setIdTipoMovimiento(1);
+                        m1.setMonto(Double.parseDouble(jTFMonto.getText()));
+                        daom.insertarMovimiento(m1);
+                    }
+
+                }
+                if (jRBTransferencia.isSelected()) {
+                    if (dao.getSaldo(Integer.parseInt(jCboIdCuenta.getSelectedItem().toString())) < Double.parseDouble(jTFMonto.getText())) {
+                        JOptionPane.showMessageDialog(null, "Fondos insuficientes");
+                    } else {
+                        CuentaLogica c2 = new CuentaLogica();
+                        c2.setIdCuenta(Integer.parseInt(jCboIdCuentaD.getSelectedItem().toString()));
+                        dao.retirarSaldo(c1, Double.parseDouble(jTFMonto.getText()));
+                        dao.depositarSaldo(c2, Double.parseDouble(jTFMonto.getText()));
+                        m1.setIdCuentaT(c1.getIdCuenta());
+                        m1.setIdCuentaR(c2.getIdCuenta());
+                        m1.setIdTipoMovimiento(3);
+                        m1.setMonto(Double.parseDouble(jTFMonto.getText()));
+                        daom.insertarMovimiento(m1);
+                    }
+                }
+                llenarTMovimiento();
+            } catch (SQLException ex) {
+
             }
-            if (jRBRetiro.isSelected()) {
-                dao.retirarSaldo(c1, Double.parseDouble(jTFMonto.getText()));
-                m1.setIdCuentaT(c1.getIdCuenta());
-                m1.setIdTipoMovimiento(1);
-                m1.setMonto(Double.parseDouble(jTFMonto.getText()));
-                daom.insertarMovimiento(m1);
-            }
-            if (jRBTransferencia.isSelected()) {
-                CuentaLogica c2 = new CuentaLogica();
-                c2.setIdCuenta(Integer.parseInt(jCboIdCuentaD.getSelectedItem().toString()));
-                dao.retirarSaldo(c1, Double.parseDouble(jTFMonto.getText()));
-                dao.depositarSaldo(c2, Double.parseDouble(jTFMonto.getText()));
-                m1.setIdCuentaT(c1.getIdCuenta());
-                m1.setIdCuentaR(c2.getIdCuenta());
-                m1.setIdTipoMovimiento(3);
-                m1.setMonto(Double.parseDouble(jTFMonto.getText()));
-                daom.insertarMovimiento(m1);
-            }
-            llenarTMovimiento();
-        } catch (SQLException ex) {
-            
         }
-      }
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jRBTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBTransferenciaActionPerformed
         // TODO add your handling code here:
-        if(jLblCuenta.isVisible()){
+        String idCuentaT = jCboIdCuenta.getSelectedItem().toString();
+        if (jLblCuenta.isVisible() && !jRBTransferencia.isSelected()) {
             jLblCuenta.setVisible(false);
             jCboIdCuentaD.setVisible(false);
-        }else{
+
+        } else {
             jLblCuenta.setVisible(true);
             jCboIdCuentaD.setVisible(true);
+            jCboIdCuentaD.removeItem(idCuentaT);
         }
     }//GEN-LAST:event_jRBTransferenciaActionPerformed
 
     private void jLabel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MousePressed
         dispose();
     }//GEN-LAST:event_jLabel3MousePressed
+
+    private void jRBDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBDepositoActionPerformed
+        // TODO add your handling code here:
+        jLblCuenta.setVisible(false);
+        jCboIdCuentaD.setVisible(false);
+        llenarCboCuentaD();
+    }//GEN-LAST:event_jRBDepositoActionPerformed
+
+    private void jRBRetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBRetiroActionPerformed
+        // TODO add your handling code here:
+        jLblCuenta.setVisible(false);
+        jCboIdCuentaD.setVisible(false);
+        llenarCboCuentaD();
+    }//GEN-LAST:event_jRBRetiroActionPerformed
+
+    private void jCboIdCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboIdCuentaActionPerformed
+        // TODO add your handling code here:
+        String idCuentaT = jCboIdCuenta.getSelectedItem().toString();
+        llenarCboCuentaD();
+        jCboIdCuentaD.removeItem(idCuentaT);
+    }//GEN-LAST:event_jCboIdCuentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,42 +345,66 @@ public class JIFraTransfer extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void llenarCboCuenta() {
+
+    private void llenarCboCuentaT() {
         try {
             CuentaDao dao = new CuentaDao();
             jCboIdCuenta.removeAllItems();
             
+
             List<CuentaLogica> miComboCuenta;
-            
+
             miComboCuenta = dao.getLista();
-            
+
             for (int i = 0; i < miComboCuenta.size(); i++) {
-                
+
                 jCboIdCuenta.addItem(String.valueOf(miComboCuenta.get(i).getIdCuenta()));
-                jCboIdCuentaD.addItem(String.valueOf(miComboCuenta.get(i).getIdCuenta()));
                 
+
             }
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        
+
+    }
+    private void llenarCboCuentaD() {
+        try {
+            CuentaDao dao = new CuentaDao();
+            
+            jCboIdCuentaD.removeAllItems();
+
+            List<CuentaLogica> miComboCuenta;
+
+            miComboCuenta = dao.getLista();
+
+            for (int i = 0; i < miComboCuenta.size(); i++) {
+
+                
+                jCboIdCuentaD.addItem(String.valueOf(miComboCuenta.get(i).getIdCuenta()));
+
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
     }
     
+
     private void llenarTMovimiento() {
         try {
             limpiarTabla();
-            
+
             MovimientoDao dao = new MovimientoDao();
             List<MovimientoLogica> miLista = dao.getLista();
-            
+
             DefaultTableModel temp = (DefaultTableModel) this.jTblMovimiento.getModel();
-            
+
             for (MovimientoLogica m1 : miLista) {
-                
+
                 Object[] fila = new Object[6];
-                
+
                 fila[0] = m1.getIdMovimiento();
                 fila[1] = m1.getIdTipoMovimiento();
                 fila[2] = m1.getFecha_Movimiento();
@@ -339,16 +412,16 @@ public class JIFraTransfer extends javax.swing.JFrame {
                 fila[4] = m1.getIdCuentaR();
                 fila[5] = m1.getMonto();
                 temp.addRow(fila);
-                
+
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        
+
     }
 
     private void limpiarTabla() {
-        
+
         DefaultTableModel temp = (DefaultTableModel) this.jTblMovimiento.getModel(); //
 
         // Limpiar los datos de la tabla.

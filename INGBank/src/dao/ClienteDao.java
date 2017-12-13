@@ -93,6 +93,7 @@ public void modificarCliente(ClienteLogica c1) throws SQLException{
         }
         return clienteId;
     }
+    
   public List<ClienteLogica>getLista() throws SQLException{
      
       String sql = "Select * from Cliente";

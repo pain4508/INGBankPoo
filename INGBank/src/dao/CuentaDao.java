@@ -137,4 +137,23 @@ public class CuentaDao {
            
        }
     }
+      public double getSaldo(int idcuenta) throws SQLException{
+        
+        double saldo = 0;
+        String sql = "SELECT saldo "
+                 +"FROM cuenta "
+                 +"WHERE idcuenta = ? ";
+        try (PreparedStatement st =(PreparedStatement) cnc.prepareStatement(sql)){
+            st.setInt(1, idcuenta);
+            ResultSet rs = st.executeQuery();
+            rs.first();
+            saldo = rs.getDouble("saldo");
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        
+        return saldo;
+    }
 }
