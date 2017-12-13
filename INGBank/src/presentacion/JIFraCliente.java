@@ -519,9 +519,18 @@ private void llenarCbN(){
      private boolean verificarTextField(){
         boolean estado;
         
-        if(jTFNombres2.getText().isEmpty()  || jTFDireccion2.getText().isEmpty() || jTFTelefono2.getText().isEmpty()){
+        if(jTFNombres2.getText().isEmpty()  && jTFDireccion2.getText().isEmpty() && jTFTelefono2.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Ingrese los campos vacios");
-            estado = false;    
+            jTFNombres2.requestFocus();
+            estado = false;
+        }else if(jTFDireccion2.getText().isEmpty() && jTFTelefono2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese los campos vacios");
+            jTFDireccion2.requestFocus();
+            estado = false;
+        }else if(jTFTelefono2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese los campos vacios");
+            jTFTelefono2.requestFocus();
+            estado = false;
         }else{
             estado = true;
         }

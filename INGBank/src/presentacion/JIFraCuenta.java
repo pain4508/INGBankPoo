@@ -403,10 +403,19 @@ public class JIFraCuenta
     private boolean verificarTextField() {
         boolean estado;
 
-        if (jTFIdCuenta.getText().isEmpty() || jFTFFechaC.getText().isEmpty() || jFTFSaldo.getText().isEmpty()) {
+        if (jTFIdCuenta.getText().isEmpty() && jFTFFechaC.getText().isEmpty() && jFTFSaldo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese los campos vacios");
+            jTFIdCuenta.requestFocus();
             estado = false;
-        } else {
+        }else if(jFTFFechaC.getText().isEmpty() && jFTFSaldo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese los campos vacios");
+            jFTFFechaC.requestFocus();
+            estado = false;
+        }else if (jFTFSaldo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese los campos vacios");
+            jFTFSaldo.requestFocus();
+            estado = false;
+        }else{
             estado = true;
         }
         return estado;
