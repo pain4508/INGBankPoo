@@ -23,7 +23,7 @@ public class conexion {
     try{
             Class.forName("com.mysql.jdbc.Driver");
 
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/INGBank?zeroDateTimeBehavior=convertToNull","root","1234");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/INGBank?zeroDateTimeBehavior=convertToNull","root","12345678");
 
         }catch(ClassNotFoundException e){
             throw new SQLException(e.getMessage());

@@ -109,6 +109,7 @@ public class JIFraCliente
         jTFApellidos2 = new javax.swing.JTextField();
         jCboNacionalidad2 = new javax.swing.JComboBox<>();
         jBtnN = new javax.swing.JButton();
+        jBtnCancelar = new javax.swing.JButton();
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -271,7 +272,7 @@ public class JIFraCliente
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Apellidos:");
 
-        jBtnGuardar2.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/save.png")); // NOI18N
+        jBtnGuardar2.setText("Guardar");
         jBtnGuardar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnGuardar2ActionPerformed(evt);
@@ -281,7 +282,7 @@ public class JIFraCliente
         Direccion2.setForeground(new java.awt.Color(255, 255, 255));
         Direccion2.setText("Direccion");
 
-        jBtnModificar2.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/edit.png")); // NOI18N
+        jBtnModificar2.setText("Modificar");
         jBtnModificar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnModificar2ActionPerformed(evt);
@@ -291,7 +292,7 @@ public class JIFraCliente
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Sexo");
 
-        jBtnEliminar2.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/delete.png")); // NOI18N
+        jBtnEliminar2.setText("Eliminar");
         jBtnEliminar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnEliminar2ActionPerformed(evt);
@@ -319,10 +320,17 @@ public class JIFraCliente
         jTFIdCliente2.setDisabledTextColor(new java.awt.Color(204, 0, 51));
         jTFIdCliente2.setEnabled(false);
 
-        jBtnN.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/new.png")); // NOI18N
+        jBtnN.setText("Nuevo");
         jBtnN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnNActionPerformed(evt);
+            }
+        });
+
+        jBtnCancelar.setText("Cancelar");
+        jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelarActionPerformed(evt);
             }
         });
 
@@ -333,56 +341,52 @@ public class JIFraCliente
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel18)
-                                        .addGap(32, 32, 32))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel14)
-                                            .addComponent(jLabel16)
-                                            .addComponent(Direccion2))
-                                        .addGap(31, 31, 31)))
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jCboSexo2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTFDireccion2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jTFNombres2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTFIdCliente2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 3, Short.MAX_VALUE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBtnN)
-                                .addGap(11, 11, 11)))
+                        .addGap(37, 37, 37)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel19)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLabel15))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTFTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTFApellidos2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCboNacionalidad2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(14, 14, 14))
+                                .addComponent(jLabel18)
+                                .addGap(32, 32, 32))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBtnGuardar2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBtnModificar2)
-                                .addGap(26, 26, 26)
-                                .addComponent(jBtnEliminar2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel16)
+                                    .addComponent(Direccion2))
+                                .addGap(31, 31, 31)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jCboSexo2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTFDireccion2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTFNombres2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTFIdCliente2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 13, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel15))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTFApellidos2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCboNacionalidad2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane3)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jBtnN)
+                .addGap(17, 17, 17)
+                .addComponent(jBtnGuardar2)
+                .addGap(18, 18, 18)
+                .addComponent(jBtnModificar2)
+                .addGap(18, 18, 18)
+                .addComponent(jBtnEliminar2)
+                .addGap(18, 18, 18)
+                .addComponent(jBtnCancelar)
+                .addGap(88, 88, 88))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,12 +413,15 @@ public class JIFraCliente
                     .addComponent(jLabel15)
                     .addComponent(jCboSexo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCboNacionalidad2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBtnGuardar2)
-                    .addComponent(jBtnModificar2)
-                    .addComponent(jBtnEliminar2)
-                    .addComponent(jBtnN))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBtnModificar2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jBtnEliminar2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBtnN, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtnGuardar2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(147, 147, 147))
@@ -526,6 +533,10 @@ private void llenarCbN(){
         }else if(jTFDireccion2.getText().isEmpty() && jTFTelefono2.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Ingrese los campos vacios");
             jTFDireccion2.requestFocus();
+            estado = false;
+        }else if(jTFTelefono2.getText().isEmpty() && jTFApellidos2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese los campos vacios");
+            jTFApellidos2.requestFocus();
             estado = false;
         }else if(jTFTelefono2.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Ingrese los campos vacios");
@@ -740,11 +751,18 @@ private void llenarCbN(){
         }   
     }//GEN-LAST:event_jBtnEliminar2ActionPerformed
 
+    private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+        habilitarBotones(true,false,false,false,false);
+    }//GEN-LAST:event_jBtnCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Direccion;
     private javax.swing.JLabel Direccion1;
     private javax.swing.JLabel Direccion2;
+    private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jBtnEliminar;
     private javax.swing.JButton jBtnEliminar1;
     private javax.swing.JButton jBtnEliminar2;

@@ -116,7 +116,7 @@ public class JIFraTransfer extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IdMovimiento", "IdTipoMovimiento", "Fecha_Movimiento", "IdCuentaT", "IdCuentaR", "Monto"
+                "IdMovimiento", "TipoMovimiento", "Fecha_Movimiento", "CuentaOriginaria", "IdCuentaReceptora", "Monto"
             }
         ));
         jScrollPane1.setViewportView(jTblMovimiento);
@@ -406,7 +406,7 @@ public class JIFraTransfer extends javax.swing.JFrame {
                 Object[] fila = new Object[6];
 
                 fila[0] = m1.getIdMovimiento();
-                fila[1] = m1.getIdTipoMovimiento();
+                fila[1] = m1.getTipomovimiento();
                 fila[2] = m1.getFecha_Movimiento();
                 fila[3] = m1.getIdCuentaT();
                 fila[4] = m1.getIdCuentaR();

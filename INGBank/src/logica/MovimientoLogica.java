@@ -16,6 +16,15 @@ public class MovimientoLogica {
     private int IdCuentaT;
     private int IdCuentaR;
     private double Monto;
+    private String tipomovimiento;
+
+    public String getTipomovimiento() {
+        return tipomovimiento;
+    }
+
+    public void setTipomovimiento(String tipomovimiento) {
+        this.tipomovimiento = tipomovimiento;
+    }
 
     public double getMonto() {
         return Monto;
