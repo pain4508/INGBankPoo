@@ -66,11 +66,15 @@ public class JFraMdi extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
+            .addGap(0, 451, Short.MAX_VALUE)
         );
+
+        jMenuBar2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 255), new java.awt.Color(204, 204, 255), new java.awt.Color(0, 153, 153), new java.awt.Color(0, 153, 153)));
+        jMenuBar2.setForeground(new java.awt.Color(0, 153, 153));
 
         jMenu3.setText("Archivo");
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/cerrar.png")); // NOI18N
         jMenuItem2.setText("Salir");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +87,7 @@ public class JFraMdi extends javax.swing.JFrame {
 
         jMenu4.setText("Clientes");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/cuenta.png")); // NOI18N
         jMenuItem1.setText("Registrar Cliente");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +100,7 @@ public class JFraMdi extends javax.swing.JFrame {
 
         jMenu5.setText("Cuentas");
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/Crearcuenta.png")); // NOI18N
         jMenuItem3.setText("Crear Cuenta");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +109,7 @@ public class JFraMdi extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem3);
 
+        jMenuItem4.setIcon(new javax.swing.ImageIcon("/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/mov.png")); // NOI18N
         jMenuItem4.setText("Movimiento");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

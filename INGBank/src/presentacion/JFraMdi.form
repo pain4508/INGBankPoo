@@ -21,6 +21,21 @@
       </SubComponents>
     </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar2">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+            <BevelBorder>
+              <Color PropertyName="highlightOuter" blue="ff" green="cc" red="cc" type="rgb"/>
+              <Color PropertyName="highlightInner" blue="ff" green="cc" red="cc" type="rgb"/>
+              <Color PropertyName="shadowOuter" blue="99" green="99" red="0" type="rgb"/>
+              <Color PropertyName="shadowInner" blue="99" green="99" red="0" type="rgb"/>
+            </BevelBorder>
+          </Border>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="0" type="rgb"/>
+        </Property>
+      </Properties>
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
@@ -32,6 +47,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/cerrar.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Salir"/>
               </Properties>
               <Events>
@@ -50,6 +68,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/cuenta.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Registrar Cliente"/>
               </Properties>
               <Events>
@@ -68,6 +89,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/Crearcuenta.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Crear Cuenta"/>
               </Properties>
               <Events>
@@ -76,6 +100,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="/Users/griselda/Documents/GitHub/INGBankPoo/INGBank/src/imagenes/mov.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Movimiento"/>
               </Properties>
               <Events>
@@ -136,7 +163,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="456" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="451" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
