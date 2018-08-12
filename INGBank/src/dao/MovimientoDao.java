@@ -69,8 +69,7 @@ public class MovimientoDao {
 
     public List<MovimientoLogica> getLista() throws SQLException {
 
-        String sql = "Select m.idmovimiento, t.movimiento, m.fecha_movimiento, m.idcuentat, m.idcuentar, m.monto "
-                + "FROM movimiento m INNER JOIN tipomovimiento t ON m.idtipomovimiento = t.idtipomovimiento";
+        String sql = "Select * from Movimiento";
 
         List<MovimientoLogica> miLista;
 
@@ -81,7 +80,7 @@ public class MovimientoDao {
             while (rs.next()) {
                 MovimientoLogica m1 = new MovimientoLogica();
                 m1.setIdMovimiento(rs.getInt("IdMovimiento"));
-                m1.setTipomovimiento(rs.getString("Movimiento"));
+                m1.setIdTipoMovimiento(rs.getInt("IdTipoMovimiento"));
                 m1.setFecha_Movimiento(rs.getString("Fecha_Movimiento"));
                 m1.setIdCuentaT(rs.getInt("IdCuentaT"));
                 m1.setIdCuentaR(rs.getInt("IdCuentaR"));
